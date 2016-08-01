@@ -1,0 +1,33 @@
+.btnRed{
+    height: 50px;
+    background-color: #f55a4e;
+    background-image: url("app/components/gombok/img/head_label_sign_red.png");
+    background-repeat: no-repeat;
+    padding-left: 70px;
+
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+}
+.btnBlue{
+    height: 50px;
+    background-color: #3a98d8;
+    background-image: url("app/components/gombok/img/btnBlue.png");
+    background-repeat: no-repeat;
+    padding-left: 70px;
+
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+}
+.btnGreen{
+    height: 50px;
+    background-color: #41c120;
+    background-image: url("app/components/gombok/img/btnGreen.png");
+    background-repeat: no-repeat;
+    padding-left: 70px;
+
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+}

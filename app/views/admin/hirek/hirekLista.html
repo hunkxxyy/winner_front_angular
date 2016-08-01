@@ -1,0 +1,123 @@
+<admin-hirek-header></admin-hirek-header>
+<main class="mainContent">
+    <div class="container">
+
+        <div class="row">
+            <div class="panel panel-default panelList">
+
+                <div class="panel-body">
+                    <div class="panelHeader">
+
+
+
+                        <div class="pull-right">
+                            alapján
+                        </div>
+                        <div class="pull-right">
+                            <li class="dropdown">
+                                <a (click)="menuOpen(orderByMenu)" style="cursor: pointer" class="dropdown-toggle"
+                                   data-toggle="dropdown">
+                                    {{gridController.orderBy.name}} <span class="caret"></span></a>
+                                <ul *ngIf="orderByMenu.visible" class="dropdown-menu" style="display:block">
+                                    <li *ngFor="let submenu of orderByMenu.submenus, let i=index"><a
+                                            (click)="changeOrderBy(submenu.orderBy)">{{submenu.orderBy.name}}</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </div>
+                        <div class="pull-right">
+                            <strong>Rendezés</strong>
+                        </div>
+                        <div class="divclear"></div>
+                    </div>
+                    <!--GRID-->
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+
+                                <th>Publikálva</th>
+                                <th >Főcím</th>
+                                <th >Tartalom</th>
+                                <th ></th>
+                                <th ></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let new of news, let i=index">
+                                <th scope="row">
+                                    <div class="pull-left">
+
+                                    </div>
+                                    <div class="pull-left">
+                                        <a href="#">{{new.datum | hunkDate:'magyar'}}</a><br>
+
+                                    </div>
+                                </th>
+                                <td align="left">
+                                    {{new.title}}
+
+                                </td>
+                                <td align="left">
+                                    {{new.content}}
+
+                                </td>
+
+                                <td align="right">
+                                   <a [routerLink]="['/admin/hirek/modify/',new.id]"> <button type="button" class="btn btn-mini btn-success">Módosítás</button></a>
+                                </td>
+                                <td align="right">
+                                    <button (click)="delete(new.id)" class="btn btn-danger btn-mini ">Törlés</button>
+
+
+
+                                </td>
+
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--ENDOF GRID-->
+                </div>
+            </div>
+            <div class="paginationBlock">
+                <div class="pull-left">
+                    <li class="dropdown">
+                        <a (click)="menuOpen(limitMenu)" style="cursor: pointer" class="dropdown-toggle"
+                           data-toggle="dropdown">
+                            {{gridController.limit}} <span class="caret"></span></a>
+                        <ul *ngIf="limitMenu.visible" class="dropdown-menu" style="display:block">
+                            <li *ngFor="let submenu of limitMenu.submenus, let i=index"><a
+                                    (click)="changeLimit(submenu.name)">{{submenu.name}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                </div>
+                <div class="pull-left">
+                    sor oldalanként. Összesen: <strong>{{gridController.count}} találat.</strong>
+                </div>
+                <div class="pull-right">
+                    <nav>
+                        <ul class="pagination">
+                            <li>
+                                <a (click)="gotoPage(gridController.currentPage-1)" aria-label="Previous">
+                                    <span aria-hidden="true"><i class="fa fa-angle-double-left" aria-hidden="true"></i></span>
+                                </a>
+                            </li>
+
+                            <li class="{{page==gridController.currentPage ? 'active' : ''}}"
+                                *ngFor="let page of avaiblePages, let i=index"><a (click)="gotoPage(page)">{{page}}</a></li>
+                            <li>
+                                <a (click)="gotoPage(gridController.currentPage+1)" aria-label="Next">
+                                    <span aria-hidden="true"><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+

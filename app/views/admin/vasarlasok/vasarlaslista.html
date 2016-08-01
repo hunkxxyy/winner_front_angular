@@ -1,0 +1,147 @@
+﻿<main class="mainContent">
+    <div class="container">
+
+        <div class="row">
+            <div class="panel panel-default panelList">
+
+                <div class="panel-body">
+                    <div class="panelHeader">
+
+                        <div class="pull-left">
+                            <input type="number" #search (keyup)="onsearch(search.value)" (change)="onsearch(search.value)" placeholder="KÓD KERESÉSE">
+                        </div>
+                        <div class="pull-right">
+                            alapján
+                        </div>
+                        <div class="pull-right">
+                            <li class="dropdown">
+                                <a (click)="menuOpen(orderByMenu)" style="cursor: pointer" class="dropdown-toggle"
+                                   data-toggle="dropdown">
+                                    {{gridController.orderBy.name}} <span class="caret"></span></a>
+                                <ul *ngIf="orderByMenu.visible" class="dropdown-menu" style="display:block">
+                                    <li *ngFor="let submenu of orderByMenu.submenus, let i=index"><a
+                                            (click)="changeOrderBy(submenu.orderBy)">{{submenu.orderBy.name}}</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </div>
+                        <div class="pull-right">
+                            <strong>Szűrés</strong>
+                        </div>
+                        <div class="divclear"></div>
+                    </div>
+                    <!--GRID-->
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+
+                                <td align="center"  width="10%">Azonosító kód</td>
+                                <td align="center"  width="20%">Állapot</td>
+                                <td align="center" width="25%">Vásárló</td>
+                                <td  align="center" width="25%">Ingatlan</td>
+                                <td align="center"  width="20%">Fizetett</td>
+
+
+                            </tr>
+                            </thead>
+
+                            <tr *ngFor="let vasarlas of vasarlass, let i=index">
+                                <td colspan="8">
+                                    <table width="100%">
+                                        <tr>
+                                            <td align="center"  width="10%">
+
+
+
+                                                 <span style="color: green;font-size: larger;font-weight: bold">{{vasarlas.code}}</span>   <br>
+                                                <span style="color: blue">Sorsjegy Ára:<br>{{vasarlas.sorsjegy_ar*1.0 | currency:'EUR':true:'1.2-2'}}</span>
+
+
+                                            </td>
+                                            <td align="center" width="20%" >
+
+
+                                                <span style="text-align: center;color: orangered;font-weight: bold" *ngIf="!vasarlas.jovahagyva">Megrendelve:<br> {{vasarlas.created_at}}</span>
+                                                <span style="text-align: center;color: green;font-weight: bold"  *ngIf="vasarlas.jovahagyva">Átutalva:<br> {{vasarlas.updated_at}}<div style="font-weight: normal;font-size: 10px;color:black">(megrendelve:<br>{{vasarlas.created_at}})</div></span>
+
+
+
+
+
+                                            </td>
+                                            <td align="center"  width="25%">
+                                                {{vasarlas.user_name}}<br>
+                                                <a href="mailto:{{vasarlas.user_email}}">{{vasarlas.user_email}}</a>
+
+                                            </td>
+                                            <td  align="center"  width="25%">
+                                                {{vasarlas.ingatlan_id}}<br>
+                                                {{vasarlas.ingatlan_varos}}<br>
+                                                {{vasarlas.ingatlan_irsz}}<br>
+                                                {{vasarlas.ingatlan_cim}}<br>
+                                                {{vasarlas.tulaj_telefon}}<br>
+                                                {{vasarlas.tulaj_email}}<br>
+
+                                            </td>
+
+                                            <td align="center"   width="20%">
+                                                <button [disabled]="vasarlas.jovahagyva==1" (click)="befizetesBeErkezett(i)"  type="button"
+                                                        class="btn btn-mini btn-success">Befizetés beérkezett
+                                                </button>
+                                            </td>
+
+                                        </tr>
+                                        
+                                    </table>
+                                </td>
+
+
+                            </tr>
+
+
+                        </table>
+                    </div>
+                    <!--ENDOF GRID-->
+                </div>
+            </div>
+            <div class="paginationBlock">
+                <div class="pull-left">
+                    <li class="dropdown">
+                        <a (click)="menuOpen(limitMenu)" style="cursor: pointer" class="dropdown-toggle"
+                           data-toggle="dropdown">
+                            {{gridController.limit}} <span class="caret"></span></a>
+                        <ul *ngIf="limitMenu.visible" class="dropdown-menu" style="display:block">
+                            <li *ngFor="let submenu of limitMenu.submenus, let i=index"><a
+                                    (click)="changeLimit(submenu.name)">{{submenu.name}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                </div>
+                <div class="pull-left">
+                    sor oldalanként. Összesen: <strong>{{gridController.count}} találat.</strong>
+                </div>
+                <div class="pull-right">
+                    <nav>
+                        <ul class="pagination">
+                            <li>
+                                <a (click)="gotoPage(gridController.currentPage-1)" aria-label="Previous">
+                                    <span aria-hidden="true"><i class="fa fa-angle-double-left" aria-hidden="true"></i></span>
+                                </a>
+                            </li>
+
+                            <li class="{{page==gridController.currentPage ? 'active' : ''}}"
+                                *ngFor="let page of avaiblePages, let i=index"><a (click)="gotoPage(page)">{{page}}</a></li>
+                            <li>
+                                <a (click)="gotoPage(gridController.currentPage+1)" aria-label="Next">
+                                    <span aria-hidden="true"><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+

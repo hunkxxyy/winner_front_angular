@@ -1,0 +1,78 @@
+<div class="site-showcase">
+  <div class="parallax page-header" style="background-image:url('template/images/contact.png');">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12"><h1 style=" text-shadow: 2px 2px #3991bf;">Kapcsolat</h1></div>
+      </div>
+    </div>
+  </div>
+  <!-- Start Page Header -->
+
+  <!-- End Page Header -->
+</div>
+<!-- Start Content -->
+
+    <div class="container" style="padding-top: 20px">
+      <div class="page">
+        <div class="row">
+          <div class="col-md-12 col-sm-12">
+            <hunk-richtext
+              [htmlcontent]="content"
+              (saved)="contentSaved($event)"
+
+              ></hunk-richtext>
+          </div>
+          <div class="col-md-8 col-sm-8">
+            <h3>Üzenet küldése</h3>
+            <div class="row">
+
+                <div class="col-md-6 margin-15">
+                  <div class="form-group">
+                    <input type="text" id="name" name="name"  class="form-control input-lg" placeholder="Név*">
+                  </div>
+                  <div class="form-group">
+                    <input type="email" id="email" name="email"  class="form-control input-lg" placeholder="Email*">
+                  </div>
+                  <div class="form-group">
+                    <input type="text" id="phone" name="phone" class="form-control input-lg" placeholder="Telefon">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <textarea cols="6" rows="5" id="comments" name="comments" class="form-control input-lg" placeholder="Message"></textarea>
+                    <input id="submit" name="submit" type="submit" class="btn btn-primary btn-lg btn-block" value="Üzenet elküldése">
+                  </div>
+                </div>
+
+            </div>
+            <div class="clearfix"></div>
+            <div id="message"></div>
+          </div>
+          <div class="col-md-4 col-sm-4">
+            <h3>Székhelyünk</h3>
+            <div class="lgray-bg" style="padding: 7px 0px 17px 0px">
+
+              <p class="big">
+                <hunk-richtext
+                  [htmlcontent]="cim"
+                  (saved)="cimSaved($event)"
+
+                  ></hunk-richtext>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!--
+<div class="container">
+  <div class="page">
+
+    <hunk-richtext
+      [htmlcontent]="content"
+      (saved)="onsaved($event)"
+      ></hunk-richtext>
+  </div>
+</div>
+-->

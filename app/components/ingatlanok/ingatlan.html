@@ -1,0 +1,48 @@
+<div class="property-block">
+    <div (click)="saveToVisited(ingatlanObject.id)" class="picture-holder">
+        <a class="property-featured-image">
+            <img src="{{host}}{{ingatlanObject.kepek[0].file}}"
+                 alt="">
+
+            <span class="images-count"><i class="fa fa-picture-o"></i> {{ingatlanObject.kepek.length}}</span>
+
+            <div>
+                <span [ngStyle]="{
+                'background':'#41c120',
+                'left':35-(ingatlanObject.szazalek_ertekesitve/4)+'px',
+	            'top':35-(ingatlanObject.szazalek_ertekesitve/4)+'px',
+	            'width':(ingatlanObject.szazalek_ertekesitve/2)+'px',
+	            'height':ingatlanObject.szazalek_ertekesitve/2+'px'
+
+	            }" class="badgesmiddle"></span>
+                <span class="badges"></span>
+                <span class="badgesnumber">{{ingatlanObject.szazalek_ertekesitve}} %</span>
+
+            </div>
+        </a>
+
+    </div>
+
+
+    <div class="property-info">
+        <div class="row">
+            <div class="col-md-12 cim ">
+                {{ingatlanObject.ingatlan_cim}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 ">
+                <div (click)="saveToVisited(ingatlanObject.id)" style="float: left;">
+                    <h5><a href="#">{{ingatlanObject.ingatlan_nm2}} m<sup>2</sup>, 3 szoba, 1 garázs</a></h5>
+
+                    <div class="price"><strong style="font-size: 16px" class="fa fa-ticket"></strong><span>{{ingatlanObject.sorsjegy_ar*1.0 |  currency:'EUR':true:'1.2-2'}}</span>
+                    </div>
+                </div>
+                <szavazogomb [gombStyle]="'kicsi'" [ingatlanObject]="ingatlanObject"></szavazogomb>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>

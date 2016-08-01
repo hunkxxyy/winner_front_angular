@@ -1,0 +1,37 @@
+<!-- Site Showcase -->
+<!-- Site Showcase -->
+<div class="site-showcase">
+    <!-- Start Page Header -->
+    <div class="parallax page-header" style="background-image:url('template/images/winners.png');">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Eredmények</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Page Header -->
+</div>
+<!-- Start Content -->
+<!-- Start Content -->
+<div class="" role="main">
+    <div id="content" class="content full">
+        <div class="container">
+            <ul class="timeline">
+                <li  *ngFor="let eredmeny of eredmenyek, let i=index" class="{{i%2==0 ? 'timeline-inverted' : 'timeline-badge'}}" >
+                    <div class="timeline-badge" style="background-color: #88b824">{{eredmeny.datum | hunkDate:'shortDay'}}<span>{{eredmeny.datum | hunkDate:'Y'}}</span></div>
+                    <div class="timeline-panel">
+                        <div class="timeline-heading">
+                            <h3 class="timeline-title"><a >{{eredmeny.title}}</a></h3>
+                            <p><small class="text-muted"><i class="fa fa-calendar"></i> {{eredmeny.datum | hunkDate:'magyar'}}</small></p>
+                        </div>
+                        <div class="timeline-body"  >
+                            <p style="white-space: pre-wrap;" [innerHtml]="eredmeny.content"></p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

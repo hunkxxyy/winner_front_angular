@@ -1,0 +1,43 @@
+
+    <div class="deitals_container">
+        <div class="head row">
+            <!-- <div class="col-md-2">
+                 <div class="price"><strong>Ft</strong><span>24.800.000 </span></div>
+             </div>-->
+
+            <h3 class="page-title col-md-12">{{ingatlanObject?.ingatlan_cim}} <span class="location">{{ingatlanObject?.ingatlan_varos}}</span>
+            </h3>
+
+        </div>
+
+
+        <div class="row" style="background-color: #efefef;">
+            <div class="col-md-8 deitals-left">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="pigPicHolder">
+                          <img  src="{{host}}{{ingatlanObject.defaultImg.paths.kozepes}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row picture-slideer">
+                    <div class="smallPictureHolder col-md-3" *ngFor="let egykep of ingatlanObject.kepek, let i=index">
+                        <img  (click)="pictureChange(egykep)" src="{{host}}{{egykep.paths.kozepes}}">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4  deitals-right">
+                <full-right-panel
+                        [ingatlanObject]="ingatlanObject"
+                        [deitalPanelBlock]="deitalPanelBlock"
+                        ></full-right-panel>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+<!-- Start Sidebar -->

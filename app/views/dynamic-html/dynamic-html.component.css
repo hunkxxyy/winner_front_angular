@@ -1,0 +1,14 @@
+* {
+  box-sizing: border-box;
+}
+
+
+.wrapper {
+  background-color: red;
+  overflow: hidden;
+}
+
+.inner {
+  background-color: lightpink;
+  padding: 2rem;
+}

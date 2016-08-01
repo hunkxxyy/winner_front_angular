@@ -1,0 +1,24 @@
+
+<div id="navbarDown" class="container">
+        <ul class="nav navbar-nav">
+            <li class="dropdown" *ngFor="let menu of menus, let i=index">
+
+                <a *ngIf="!menu.link" (click)="menuOpen(menu)" style="cursor: pointer">
+                    <i class=" {{menu.icon}}" aria-hidden="true"></i> {{menu.name}}</a>
+                <a *ngIf="menu.link" [routerLink]="['/'+menu.link,(menu.linkParams)?menu.linkParams:'']"  >
+                    <i class=" {{menu.icon}}" aria-hidden="true"></i> {{menu.name}}</a>
+                <ul *ngIf="menu.visible && menu.submenu" class="dropdown-menu" style="display:block">
+                    <li *ngFor="let submenu of menu.submenu, let i=index" (click)="menuClose()"><a [routerLink]="[submenu.link]">{{submenu.name}}</a>
+                    </li>
+
+                </ul>
+            </li>
+
+        </ul>
+
+    </div>
+
+    <!-- /.container-fluid -->
+    <!-- <debugger-view [debugMsg]="showDebugMsg()"></debugger-view>-->
+
+

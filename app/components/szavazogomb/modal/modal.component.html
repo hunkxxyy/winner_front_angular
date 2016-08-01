@@ -1,0 +1,36 @@
+<button *ngIf="btnCaption" (click)="modalOpen(modal)" class="btn btn-secondary pull-left">{{btnCaption}}</button>
+
+
+<div  *ngIf="!btnCaption" (click)="modalOpen(modal)" style="float: right"><img width="55px" src="img/btn_licit.png"></div>
+<modal #modal   (onDismiss)="modalClosed()" (onClose)="modalClosed()">
+
+
+  <modal-header>
+
+    <button  (click)="modalClosed()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    Szerkesztés
+
+
+  </modal-header>
+
+
+  <modal-body>
+
+
+   BODY
+
+
+  </modal-body>
+  <modal-footer class="modal-footer">
+
+
+    <a (click)="save()">
+      <button type="submit" class="btn btn-secondary pull-right">Mentés</button>
+    </a>
+    <button (click)="modal.close(); modalClosed()" class="btn btn-default pull-right">Mégse</button>
+
+
+  </modal-footer>
+</modal>

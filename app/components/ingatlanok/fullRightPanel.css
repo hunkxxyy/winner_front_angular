@@ -1,0 +1,66 @@
+
+ul li {
+    padding: 10px;
+    margin: 10px;
+    height: 60px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 2px -3px;
+    background-color: white;
+}
+
+.field {
+    font-weight: bold;
+
+}
+
+.value {
+
+    height: 30px;
+    width: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 16px;
+    font-weight: bold;
+    color: #f55a4e;
+}
+
+sup {
+    font-size: 12px;
+}
+
+.leiras ul li {
+    height: 480px;
+
+    text-align: justify;
+}
+
+.leiras .field {
+    height: 50px;
+
+}
+
+.leiras .value {
+    width: 90%;
+   font-size: 14px;
+    color: black;
+    font-weight: normal;
+}
+table{
+
+    box-shadow: 0 4px 2px -3px;
+    border-radius: 10px;
+    background-color: #efefef;
+    width: 100%;
+    font-size: 12px;
+
+}
+table th{
+    padding-left: 10px;
+    font-weight: bold;
+}
+table td{
+    padding-left: 10px;
+    font-weight: normal;
+    border-top: solid 1px #999999;
+}

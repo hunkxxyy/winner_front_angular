@@ -1,0 +1,31 @@
+.selected{
+    border:dashed 1px blue;
+    padding: 4px;
+    background-color: #b2f3ff;
+    width: 200px;
+    height: 380px;
+    display: block;
+
+}
+
+.btn{
+   width: 100%;
+    background-color: #ff8484;
+}
+section{
+
+
+
+    height: 55px;
+
+
+}
+.textinput{
+    width: 140px;
+}
+img{
+    height:150px;
+}
+.green{
+    background-color: #00e676;
+}

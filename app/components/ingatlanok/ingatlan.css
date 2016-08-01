@@ -1,0 +1,27 @@
+.picture-holder {
+    background-color: #efefef;
+
+    text-align: center;
+}
+.picture-holder img{
+    height: 154px;
+    border: 1px solid #FFFFFF;
+
+    box-shadow: inset x y blur spread color;
+    box-shadow: 1px 1px 1px #777;
+}
+.cim{
+    color: #f55a4e;
+    font-weight: 800;
+    font-size: 12px;
+    padding-bottom: 8px;
+}
+h5 {
+    font-size: 11px;
+    font-weight: 100
+}
+.price{
+    font-size: 14px;
+    width: 140px;
+
+}

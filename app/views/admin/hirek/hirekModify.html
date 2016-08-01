@@ -1,0 +1,49 @@
+<admin-hirek-header></admin-hirek-header>
+<div class="container container-fluid">
+    <section>
+        <div class="form-group row">
+            <label for="ingatlan_cim" class="col-sm-2 form-control-label">Hír címe</label>
+
+            <div class="col-sm-10">
+                <input  [(ngModel)]="news.title" type="text" class="form-control" id="ingatlan_cim" placeholder="Hír címe"
+                       >
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="" class="col-sm-2 form-control-label">Publikálás dátuma:</label>
+
+            <!--<div class="col-sm-4">
+                <input  [(ngModel)]="news.created_at" class="form-control" id="ingatlan_telek_nm2" placeholder="ingatlan_telek_nm2"
+                       >
+            </div>-->
+
+            <date-time-picker
+                    [width]="'60%'"
+                    [height]="'25px'"
+                    [options]="myDatePickerOptions"
+                    (dateChanged)="onDateChanged($event)"
+                    [selDate]="news.datum | hunkDate:'engDate'"
+                    ></date-time-picker>
+
+        </div>
+        <div class="form-group row">
+            <label for="" class="col-sm-2 form-control-label">Leírás:</label>
+
+            <div class="col-sm-10">
+                <textarea rows="6"  [(ngModel)]="news.content" class="form-control"></textarea>
+            </div>
+
+        </div>
+
+
+
+    </section>
+    <div class="form-group row">
+        <div class=" col-sm-6">
+            <button type="submit" (click)="onUpdate()" class="btn green">Hír mentése</button>
+        </div>
+        <div class=" col-sm-6" *ngIf="news.id!=0">
+            <button type="submit" (click)="onDelete()" class="btn red">Hír törlése</button>
+        </div>
+    </div>
+</div>

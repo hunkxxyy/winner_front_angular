@@ -1,0 +1,155 @@
+<admin-ingatlan-header></admin-ingatlan-header>
+<main class="mainContent">
+    <div class="container">
+
+        <div class="row">
+            <div class="panel panel-default panelList">
+
+                <div class="panel-body">
+                    <div class="panelHeader">
+
+
+                        <div class="pull-right">
+                            alapján
+                        </div>
+                        <div class="pull-right">
+                            <li class="dropdown">
+                                <a (click)="menuOpen(orderByMenu)" style="cursor: pointer" class="dropdown-toggle"
+                                   data-toggle="dropdown">
+                                    {{gridController.orderBy.name}} <span class="caret"></span></a>
+                                <ul *ngIf="orderByMenu.visible" class="dropdown-menu" style="display:block">
+                                    <li *ngFor="let submenu of orderByMenu.submenus, let i=index"><a
+                                            (click)="changeOrderBy(submenu.orderBy)">{{submenu.orderBy.name}}</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </div>
+                        <div class="pull-right">
+                            <strong>Rendezés</strong>
+                        </div>
+                        <div class="divclear"></div>
+                    </div>
+                    <!--GRID-->
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+
+                                <th width="10%">Azonosító</th>
+                                <th width="10%">Város</th>
+                                <th width="20%">Cím</th>
+                                <th width="10%">Ár</th>
+                                <th width="10%">Sorsjegy %</th>
+                                <th width="10%">Sorsjegy eladások</th>
+                                <th width="10%"></th>
+                                <th width="10%"></th>
+
+                            </tr>
+                            </thead>
+
+                            <tr *ngFor="let ingatlan of ingatlans, let i=index">
+                                <td colspan="8">
+                                    <table width="100%">
+                                        <tr>
+                                            <td scope="row" width="10%">
+                                                <div class="pull-left">
+
+                                                </div>
+                                                <div class="pull-left">
+                                                    <a href="#">{{ingatlan.id}}</a><br>
+
+                                                </div>
+                                            </td>
+                                            <td align="left" width="10%">
+                                                {{ingatlan.ingatlan_varos}}
+
+                                            </td>
+                                            <td align="left" width="20%">
+                                                {{ingatlan.ingatlan_cim}}
+
+                                            </td>
+                                            <td align="left" width="10%">{{ingatlan.ingatlan_ar*1.0 |
+                                                currency:'EUR':true:'1.2-2'
+                                                }}
+                                            </td>
+                                            <td align="left" width="10%">{{ingatlan.eladas_szazalek}}</td>
+                                            <td align="left" width="10%">
+                                                <button (click)="showLicits(ingatlan.id)" type="button"
+                                                        class="btn btn-mini btn-success">Vásárlók listája
+                                                </button>
+                                            </td>
+                                            <td align="right" width="10%">
+                                               <a [routerLink]="['/ingatlanok/modify',ingatlan.id]"> <button  type="button"
+                                                        class="btn btn-mini btn-success">Módosítás
+                                                </button></a>
+                                            </td>
+                                            <td align="right" width="10%">
+                                                <button (click)="delete(ingatlan.id)" class="btn btn-danger btn-mini ">
+                                                    Törlés
+                                                </button>
+
+
+                                            </td>
+                                        </tr>
+                                        <tr   *ngIf="licitlineShow==ingatlan.id">
+                                            <td style="padding:10px;border:solid 1px; background-color: #EEE" colspan="8">
+                                                <ingatlan-licit
+                                                        [licits]="ingatlan.id"
+                                                        >
+
+                                                </ingatlan-licit>
+
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+
+
+                            </tr>
+
+
+                        </table>
+                    </div>
+                    <!--ENDOF GRID-->
+                </div>
+            </div>
+            <div class="paginationBlock">
+                <div class="pull-left">
+                    <li class="dropdown">
+                        <a (click)="menuOpen(limitMenu)" style="cursor: pointer" class="dropdown-toggle"
+                           data-toggle="dropdown">
+                            {{gridController.limit}} <span class="caret"></span></a>
+                        <ul *ngIf="limitMenu.visible" class="dropdown-menu" style="display:block">
+                            <li *ngFor="let submenu of limitMenu.submenus, let i=index"><a
+                                    (click)="changeLimit(submenu.name)">{{submenu.name}}</a>
+                            </li>
+                        </ul>
+                    </li>
+                </div>
+                <div class="pull-left">
+                    sor oldalanként. Összesen: <strong>{{gridController.count}} találat.</strong>
+                </div>
+                <div class="pull-right">
+                    <nav>
+                        <ul class="pagination">
+                            <li>
+                                <a (click)="gotoPage(gridController.currentPage-1)" aria-label="Previous">
+                                    <span aria-hidden="true"><i class="fa fa-angle-double-left" aria-hidden="true"></i></span>
+                                </a>
+                            </li>
+
+                            <li class="{{page==gridController.currentPage ? 'active' : ''}}"
+                                *ngFor="let page of avaiblePages, let i=index"><a (click)="gotoPage(page)">{{page}}</a></li>
+                            <li>
+                                <a (click)="gotoPage(gridController.currentPage+1)" aria-label="Next">
+                                    <span aria-hidden="true"><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
