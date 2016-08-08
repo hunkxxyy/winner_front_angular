@@ -43,6 +43,8 @@ var barrels = [
     'app/views/settings/item-group',
     'app/views/dynamic-html',
     'app/views/kapcsolat',
+    'app/components/hunk-slider',
+    'app/components/szavazogomb/modal',
 ];
 var cliSystemConfigPackages = {
     'ng2-bs3-modal': {

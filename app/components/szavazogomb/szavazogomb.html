@@ -6,12 +6,13 @@
                 {{ingatlanObject.szazalek_ertekesitve}}%
             </div>
         </div>
-        <button (click)="vasarlok()" type="button" class="btn btn-custom"> SORSJEGY VÁSÁRLÁSA</button>
+
+      <app-modal *ngIf="gombStyle=='nagy'"  [callingButton]="'nagy'" (valueConfirmed)="vasarlas_elfogadva()"></app-modal>
 
 
 
 
     </div>
 </div>
-<!--<div  *ngIf="gombStyle=='kicsi'" (click)="vasarlok()" style="float: right"><img width="55px" src="img/btn_licit.png"></div>-->
-<app-modal></app-modal>
+<!--<div  *ngIf="gombStyle=='kicsi'" (click)="vasarlok()" style="float: right"><img width="55px" src="template/images/btn_licit.png"></div>-->
+<app-modal *ngIf="gombStyle=='kicsi'"  [callingButton]="'kicsi'" (valueConfirmed)="vasarlas_elfogadva()"></app-modal>

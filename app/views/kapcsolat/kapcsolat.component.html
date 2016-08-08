@@ -17,8 +17,8 @@
         <div class="row">
           <div class="col-md-12 col-sm-12">
             <hunk-richtext
-              [htmlcontent]="content"
-              (saved)="contentSaved($event)"
+              [htmlcontent]="_HtmlcontentsService.contents.kapcsolat_tartalom.content"
+              (saved)="_HtmlcontentsService.setContent(_HtmlcontentsService.contents.kapcsolat_tartalom.id,$event)"
 
               ></hunk-richtext>
           </div>
@@ -28,19 +28,19 @@
 
                 <div class="col-md-6 margin-15">
                   <div class="form-group">
-                    <input type="text" id="name" name="name"  class="form-control input-lg" placeholder="Név*">
+                    <input type="text" id="name" [(ngModel)]="content.name" name="name"  class="form-control input-lg" placeholder="Név*">
                   </div>
                   <div class="form-group">
-                    <input type="email" id="email" name="email"  class="form-control input-lg" placeholder="Email*">
+                    <input type="email" id="email"  [(ngModel)]="content.email" name="email"  class="form-control input-lg" placeholder="Email*">
                   </div>
                   <div class="form-group">
-                    <input type="text" id="phone" name="phone" class="form-control input-lg" placeholder="Telefon">
+                    <input type="text" id="phone"  [(ngModel)]="content.phone" name="phone" class="form-control input-lg" placeholder="Telefon">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <textarea cols="6" rows="5" id="comments" name="comments" class="form-control input-lg" placeholder="Message"></textarea>
-                    <input id="submit" name="submit" type="submit" class="btn btn-primary btn-lg btn-block" value="Üzenet elküldése">
+                    <textarea  [(ngModel)]="content.comments" cols="6" rows="5" id="comments" name="comments" class="form-control input-lg" placeholder="Message"></textarea>
+                    <input id="submit" (click)="sendMessage()" name="submit" type="submit" class="btn btn-primary btn-lg btn-block" value="Üzenet elküldése">
                   </div>
                 </div>
 
@@ -54,8 +54,8 @@
 
               <p class="big">
                 <hunk-richtext
-                  [htmlcontent]="cim"
-                  (saved)="cimSaved($event)"
+                  [htmlcontent]="_HtmlcontentsService.contents.kapcsolat_cim.content"
+                  (saved)="_HtmlcontentsService.setContent(_HtmlcontentsService.contents.kapcsolat_cim.id,$event)"
 
                   ></hunk-richtext>
               </p>

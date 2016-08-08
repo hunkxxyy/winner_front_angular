@@ -1,0 +1,17 @@
+
+
+
+<div style="position: relative; height: 220px" (mouseover)="showArrow=true" (mouseleave)="showArrow=false">
+  <div  *ngIf="showArrow" style="position: absolute;left: 0px;top:90px;z-index: 9999">
+    <span (click)="prev()" class="nextarrow">&#xf104;</span>
+  </div>
+  <div  *ngIf="showArrow"  style="position: absolute;right: 15px;top:90px;z-index: 9999">
+    <span (click)="next()" class="nextarrow">&#xf105;</span>
+  </div>
+
+  <ul #hunkSlider>
+    <li *ngFor="let object of movingObjectArray, let i=index" style="padding: 0px 10px 0px 10px">
+      <ingatlan (ingatlanSelected)="onIngatlanSelect($event)" [ingatlanObject]=object></ingatlan>
+    </li>
+  </ul>
+</div>

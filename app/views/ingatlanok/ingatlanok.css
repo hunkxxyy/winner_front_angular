@@ -14,13 +14,14 @@ header {
     color: #aaa;
 }
 
-ul li {
-    cursor: pointer;
-    padding-top: 17px;
-    padding-right: 16px;
-    display: inline;
-    font-size: 20px;
 
-    color: red;
-    float: right;
+ul li {
+  cursor: pointer;
+  padding-top: 17px;
+  padding-right: 16px;
+  display: inline;
+  font-size: 20px;
+
+  color: red;
+  float: right;
 }

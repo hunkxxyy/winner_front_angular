@@ -1,0 +1,22 @@
+<div  [ngClass]="messageStatus" >
+ <!-- <div class="panelname"><button (click)="clearErrors()">X</button></div>-->
+  <div style="color:white;right:3px;font-weight:bold;cursor:pointer;position: absolute" (click)="clear()">x</div>
+  <div @movementTrigger="state"  class="errors">
+
+    <ul>
+
+      <li   *ngFor="let line of errorMsg, let i=index">{{line}}</li>
+
+
+    </ul>
+
+  </div>
+
+</div>
+
+
+
+
+
+
+

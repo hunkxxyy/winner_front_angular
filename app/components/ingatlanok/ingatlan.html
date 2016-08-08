@@ -1,4 +1,4 @@
-<div class="property-block">
+<div  class="property-block">
     <div (click)="saveToVisited(ingatlanObject.id)" class="picture-holder">
         <a class="property-featured-image">
             <img src="{{host}}{{ingatlanObject.kepek[0].file}}"
@@ -38,6 +38,7 @@
                     <div class="price"><strong style="font-size: 16px" class="fa fa-ticket"></strong><span>{{ingatlanObject.sorsjegy_ar*1.0 |  currency:'EUR':true:'1.2-2'}}</span>
                     </div>
                 </div>
+
                 <szavazogomb [gombStyle]="'kicsi'" [ingatlanObject]="ingatlanObject"></szavazogomb>
 
             </div>

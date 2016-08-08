@@ -1,3 +1,26 @@
-a {
-  cursor: pointer;
+.szavazogomb {
+  margin: 0px 10px 0px 10px;
+
 }
+
+.btn-custom {
+  width: 100%;
+  background: #41c120;
+  border-color: rgba(204, 204, 204, 1);
+  color: rgba(255, 255, 255, 1);
+  font-size: 14px;
+  border-radius: 8px;
+  border-width: 1px;
+}
+
+.btn-custom:hover {
+  background: #298e0f;
+  border-color: rgba(173, 173, 173, 1);
+  color: rgba(255, 255, 255, 1);
+}
+/*
+.btn-custom:active, .btn-custom:focus {
+  background: rgba(235, 235, 235, 1);
+  border-color: rgba(173, 173, 173, 1);
+  color: rgba(255, 255, 255, 1);
+}*/
