@@ -14,9 +14,17 @@ var menuBar_conponent_1 = require('./components/header/menuBar.conponent');
 var menuBarTopComponent_1 = require('./components/menubar/menuBarTopComponent');
 var menuBarDownComponent_1 = require('./components/menubar/menuBarDownComponent');
 var footer_component_1 = require('./components/footer/footer.component');
+var errorView_components_1 = require("./components/error-view/errorView.components");
+var auth_service_1 = require("./globals/services/auth.service");
+var error_service_1 = require("./globals/services/error.service");
 var AppComponent = (function () {
-    function AppComponent() {
+    function AppComponent(_AuthService, _ErrorService) {
+        this._AuthService = _AuthService;
+        this._ErrorService = _ErrorService;
     }
+    AppComponent.prototype.showErrorMsg = function () {
+        return this._ErrorService.getErrorMsg();
+    };
     AppComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
@@ -24,6 +32,7 @@ var AppComponent = (function () {
             templateUrl: 'app.component.html',
             styleUrls: ['app.component.css'],
             directives: [
+                errorView_components_1.ErrorView,
                 router_1.ROUTER_DIRECTIVES,
                 menuBar_conponent_1.MenuBarComponent,
                 menuBarTopComponent_1.MenuBarTopComponent,
@@ -31,7 +40,7 @@ var AppComponent = (function () {
                 footer_component_1.FooterComponent
             ],
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [auth_service_1.AuthService, error_service_1.ErrorService])
     ], AppComponent);
     return AppComponent;
 }());

@@ -1,1 +1,0 @@
-{"version":3,"file":"index.js","sourceRoot":"","sources":["file:///C:/wamp64/www/ingatlanlotto/winner_front/tmp/broccoli_type_script_compiler-input_base_path-SL1UMPTc.tmp/0/src/app/components/modal/taxcodes-modal/index.ts"],"names":[],"mappings":";;;;AAAA,iBAAc,4BAA4B,CAAC,EAAA","sourcesContent":["export * from './taxcodes-modal.component';\r\n"]}

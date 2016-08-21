@@ -9,22 +9,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var core_2 = require('@angular/core');
 var error_service_1 = require("../../globals/services/error.service");
 var API_service_1 = require("../../globals/services/API.service");
+var auth_service_1 = require("../../globals/services/auth.service");
+var kivalasztott_ingatlanok_service_1 = require("../../globals/services/kivalasztott-ingatlanok.service");
 var haedLabel_component_1 = require("../../components/gombok/haedLabel.component");
 var ingatlan_1 = require("../../components/ingatlanok/ingatlan");
 var ingatlanFull_component_1 = require("../../components/ingatlanok/ingatlanFull.component");
-//import {AnimationBuilder} from '@angular/src/animate/animation_builder';
+var hunk_slider_component_1 = require('../../components/hunk-slider/hunk-slider.component');
 var window_service_1 = require('../../utils/scrollWindow/window-service');
 var IngatlanokViewComponent = (function () {
     function IngatlanokViewComponent(_ErrorService, _ApiService, 
         // private _ab:AnimationBuilder,
-        _e, _win) {
+        _e, _win, _AuthService, _KivalasztottIngatlanokService) {
         this._ErrorService = _ErrorService;
         this._ApiService = _ApiService;
         this._e = _e;
         this._win = _win;
-        this.limit = 4;
+        this._AuthService = _AuthService;
+        this._KivalasztottIngatlanokService = _KivalasztottIngatlanokService;
+        this.limit = 40;
         this.offset = 0;
         this.listView = false;
         this.deitalPanelBlock = 'ingatlan';
@@ -33,6 +38,7 @@ var IngatlanokViewComponent = (function () {
     ;
     IngatlanokViewComponent.prototype.ngOnInit = function () {
         this.showList();
+        /*  if (this._AuthService.logged) this.loadkivalasztottInfatlanok();*/
         jQuery('.flexslider').each(function () {
             var sliderInstance = jQuery(this);
             sliderInstance.flexslider({
@@ -55,17 +61,19 @@ var IngatlanokViewComponent = (function () {
     };
     IngatlanokViewComponent.prototype.showList = function () {
         var _this = this;
-        var q = (this.listView) ? 'api/ingatlans/where=id>1' : 'api/ingatlans/where=id>1&offset=' + this.offset + '&limit=' + this.limit;
+        // let q=(this.listView)?'api/ingatlans/where=id>1':'api/ingatlans/where=id>1&offset='+this.offset+'&limit='+this.limit;
+        var q = 'api/ingatlans/where=id>1';
         this._ApiService.getResponseGET(q, '').subscribe(function (data) {
             console.log(data);
             _this.ingatlanok = data;
+            _this.listaTipus = 'lista';
             if (!_this.selectedIngatlan) {
                 _this.onIngatlanSelect(_this.ingatlanok[0].id);
             }
         }, function (error) {
             var msg;
             msg.type = error_service_1.MessageTypes.mtDanger;
-            msg.msg = 'Sikertelen';
+            msg.msg.push('Sikertelen');
             _this._ErrorService.setErrorMsg(msg);
         });
     };
@@ -97,6 +105,8 @@ var IngatlanokViewComponent = (function () {
          }
  
  */
+        console.log(this.hunkSlider);
+        this.hunkSlider.nativeElement.scrollLeft = 100;
         this.showList();
     };
     IngatlanokViewComponent.prototype.prev = function () {
@@ -164,16 +174,35 @@ var IngatlanokViewComponent = (function () {
     IngatlanokViewComponent.prototype.showIngatlanReszletei = function (block) {
         this.deitalPanelBlock = block;
     };
+    IngatlanokViewComponent.prototype.load = function (ingatlanlista) {
+        this.listaTipus = ingatlanlista;
+    };
+    __decorate([
+        core_1.ViewChild('hunkSlider'), 
+        __metadata('design:type', core_1.ElementRef)
+    ], IngatlanokViewComponent.prototype, "hunkSlider", void 0);
     IngatlanokViewComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'ingatlanok-view-component',
             templateUrl: 'htmls/ingatlanok.html',
             styleUrls: ["ingatlanok.css"],
-            directives: [haedLabel_component_1.HeadLabelComponent, ingatlan_1.IngatlanComponent, ingatlanFull_component_1.IngatlanFullComponent],
-            providers: [API_service_1.APIService, window_service_1.WINDOW_PROVIDERS],
+            directives: [haedLabel_component_1.HeadLabelComponent, ingatlan_1.IngatlanComponent, ingatlanFull_component_1.IngatlanFullComponent, hunk_slider_component_1.HunkSliderComponent],
+            providers: [API_service_1.APIService, window_service_1.WINDOW_PROVIDERS, kivalasztott_ingatlanok_service_1.KivalasztottIngatlanokService],
+            animations: [
+                core_2.trigger('movementtrigger', [
+                    core_2.state('first', core_2.style({ 'padding-left': '0px' })),
+                    core_2.state('second', core_2.style({ 'padding-left': '200px' })),
+                    core_2.transition('first=>second', [
+                        core_2.animate('200ms ease-in')
+                    ]),
+                    core_2.transition('second=>first', [
+                        core_2.animate('200ms ease-out')
+                    ])
+                ])
+            ]
         }), 
-        __metadata('design:paramtypes', [error_service_1.ErrorService, API_service_1.APIService, core_1.ElementRef, window_service_1.WINDOW])
+        __metadata('design:paramtypes', [error_service_1.ErrorService, API_service_1.APIService, core_1.ElementRef, window_service_1.WINDOW, auth_service_1.AuthService, kivalasztott_ingatlanok_service_1.KivalasztottIngatlanokService])
     ], IngatlanokViewComponent);
     return IngatlanokViewComponent;
 }());

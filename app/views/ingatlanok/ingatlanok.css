@@ -15,6 +15,7 @@ header {
 }
 
 
+/*
 ul li {
   cursor: pointer;
   padding-top: 17px;
@@ -24,4 +25,11 @@ ul li {
 
   color: red;
   float: right;
+}
+*/
+
+ul li {
+    width: 1200px;
+    float: left;
+    display: block;
 }

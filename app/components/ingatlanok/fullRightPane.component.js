@@ -11,9 +11,37 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var szavazogomb_component_1 = require("../szavazogomb/szavazogomb.component");
 var hunkCurrency_pipe_1 = require("../../globals/pipes/hunkCurrency.pipe");
+var API_service_1 = require("../../globals/services/API.service");
 var FullRightPanelComponent = (function () {
-    function FullRightPanelComponent() {
+    function FullRightPanelComponent(_APIService) {
+        this._APIService = _APIService;
+        this.toplista = [];
+        this.fuggobenVan = 0;
     }
+    FullRightPanelComponent.prototype.ngOnInit = function () {
+        this.loasToplista();
+        this.getFuggoIngatlanok();
+    };
+    FullRightPanelComponent.prototype.loasToplista = function () {
+        var _this = this;
+        var apilink = 'api/ingatlan/licit/toplista/' + this.ingatlanObject.id;
+        console.log(apilink);
+        this._APIService.getResponseGET(apilink, '').subscribe(function (data) {
+            _this.toplista = data;
+        }, function (error) {
+            console.log(error);
+        });
+    };
+    FullRightPanelComponent.prototype.getFuggoIngatlanok = function () {
+        var _this = this;
+        var apilink = 'api/ingatlan/licit/fuggobenleve/' + this.ingatlanObject.id;
+        console.log(apilink);
+        this._APIService.getResponseGET(apilink, '').subscribe(function (data) {
+            _this.fuggobenVan = data;
+        }, function (error) {
+            console.log(error);
+        });
+    };
     FullRightPanelComponent = __decorate([
         core_1.Component({
             selector: 'full-right-panel',
@@ -22,9 +50,10 @@ var FullRightPanelComponent = (function () {
             styleUrls: ["fullRightPanel.css"],
             directives: [szavazogomb_component_1.SzavazoGombComponent],
             pipes: [hunkCurrency_pipe_1.hunkCurrencyPipe],
-            inputs: ['ingatlanObject', 'deitalPanelBlock']
+            inputs: ['ingatlanObject', 'deitalPanelBlock'],
+            providers: [API_service_1.APIService]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [API_service_1.APIService])
     ], FullRightPanelComponent);
     return FullRightPanelComponent;
 }());

@@ -2,91 +2,69 @@
 <div class="hero-slider flexslider clearfix" data-autoplay="yes" data-pagination="no" data-arrows="yes"
      data-style="fade" data-pause="yes">
   <ul class="slides">
-    <li class=" parallax" style="background-image:url(template/images/banner1.png);">
-      <hi>helóka</hi>
-    </li>
-    <li class="parallax" style="background-image:url(template/images/banner2.png);">
+    <li >
+      <img style=" width: 100%" src="template/images/banner1.png" />
 
     </li>
-    <li class="parallax" style="background-image:url(template/images/banner4.png);">
+    <li >
+      <img style=" width: 100%" src="template/images/banner2.png" />
 
     </li>
-    <li class="parallax" style="background-image:url(template/images/banner5.png);">
+    <li >
+      <img style=" width: 100%" src="template/images/banner3.png" />
 
     </li>
+    <li >
+      <img style=" width: 100%" src="template/images/banner4.png" />
+
+    </li>
+    <li >
+      <img style=" width: 100%" src="template/images/banner5.png" />
+
+    </li>
+
   </ul>
 </div>
 <!-- End Hero Slider -->
 <div class="container">
 
-
+<!-- ------------------------------INGATLANLISTA-----BEGIN------------------------- -->
   <div class="row" style="margin-bottom: 25px">
     <header>
       <div class="container-fluid">
         <div class="row no-gutter">
 
-          <head-label [css]="'btnBlue'" class="col-md-4" [caption]="'Aktuális ingatlanok'"></head-label>
-          <head-label [css]="'btnGreen'" class="col-md-4" [caption]="'Kiválasztott ingatlanok'"></head-label>
-          <!--<div id="elementID">
-            <ul>
-              <li (click)="next()"><i class="fa   fa-chevron-right"></i></li>
-              <li (click)="prev()"><i class="fa  fa-chevron-left"></i></li>
-              <li *ngIf="!listView" (click)="changeView()"><i class="fa   fa-th"></i></li>
-
-              <li *ngIf="listView" (click)="changeView()"><i class="fa   fa-ellipsis-h"></i></li>
-
-
-            </ul>
-          </div>-->
-
-
-        </div>
+          <head-label (click)="load('lista')"[css]="'btnBlue'" class="col-md-4" [caption]="'Aktuális ingatlanok'"></head-label>
+          <head-label (click)="load('kivalasztott')" [css]="'btnGreen'" class="col-md-4" [caption]="'Kiválasztott ingatlanok'"></head-label>
+         </div>
       </div>
     </header>
   </div>
-
-  <!--eingltallista begin-->
-
-  <!-- <ul  >
-     <li  *ngFor="let ingatlan of ingatlanok, let i=index" style="left: '500px'">
-
-       <ingatlan (ingatlanSelected)="onIngatlanSelect($event)" [ingatlanObject]=ingatlan></ingatlan>
-     </li>
-   </ul>-->
-
-  <!--  <ul id="hunkslider" #hunkSlider >
-      <li  *ngFor="let ingatlan of ingatlanok, let i=index" >
-        <ingatlan (ingatlanSelected)="onIngatlanSelect($event)" [ingatlanObject]=ingatlan></ingatlan>
-      </li>
-    </ul>-->
+  <!-- ------------------------Ingatlanok listája SLIDER -------------------------->
   <app-hunk-slider
-    [movingObjectArray]="ingatlanok"
+    [movingObjectArray]="(listaTipus=='lista')?ingatlanok:_KivalasztottIngatlanokService.kivalasztottIngatlanok"
     [objWidth]="250"
     (ingatlanSelected)="onIngatlanSelect($event)"
     ></app-hunk-slider>
+  <!-- ------------------------------INGATLANLISTA--END---------------------------- -->
 
-
-
+  <!-- ------------------------------INGATLAN RÉSZLETEK------------------------------ -->
+  <!--------------------------------------Header-------------------------------------->
   <div class="row">
     <header>
       <div class="container-fluid">
         <div class="row no-gutter">
-
           <head-label (click)="showIngatlanReszletei('ingatlan')" class="col-md-4"
                       [caption]="'INGATLAN RÉSZLETEI'"></head-label>
           <head-label (click)="showIngatlanReszletei('leiras')" [css]="'btnRed'" class="col-md-4"
                       [caption]="'LEÍRÁS'"></head-label>
-
-
           <head-label (click)="showIngatlanReszletei('aukcio')" [css]="'btnGreen'" class="col-md-4"
                       [caption]="'AUKCIÓ ÁLLAPOTA'"></head-label>
-
-
         </div>
       </div>
     </header>
   </div>
-
+  <!--------------------------------------right side details-------------------------------------->
   <div class="row" id="ingatlanFullDeital">
     <div class="row no-gutter">
       <div class="property-grid" *ngIf="selectedIngatlan">
@@ -99,7 +77,7 @@
       </div>
     </div>
   </div>
-
+  <!-- ------------------------------INGATLAN RÉSZLETEK--END---------------------------- -->
 
 
 </div>

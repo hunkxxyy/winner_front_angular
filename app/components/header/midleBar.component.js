@@ -16,6 +16,7 @@ var MiddleBar = (function () {
     function MiddleBar(_ErrorService, _ApiService) {
         this._ErrorService = _ErrorService;
         this._ApiService = _ApiService;
+        this.mobilmenuVisible = false;
         this.bannerShow = false;
     }
     ;
@@ -24,7 +25,7 @@ var MiddleBar = (function () {
             moduleId: module.id,
             selector: 'middle-bar',
             templateUrl: 'htmls/midlebar.html',
-            styleUrls: [""],
+            styleUrls: ["midlebar.css"],
             directives: [router_1.ROUTER_DIRECTIVES],
             providers: [API_service_1.APIService, error_service_1.ErrorService],
             inputs: ['menus']

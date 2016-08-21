@@ -10,28 +10,44 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var ng2_bs3_modal_1 = require('ng2-bs3-modal/ng2-bs3-modal');
-var mYModalComponent = (function () {
-    function mYModalComponent() {
+var auth_service_1 = require('../../../globals/services/auth.service');
+var ModalComponent = (function () {
+    function ModalComponent(_AuthService) {
+        this._AuthService = _AuthService;
+        this.valueConfirmed = new core_1.EventEmitter(); //the question has confirmed
+        this.openedPopUp = new core_1.EventEmitter(); //get a modalcomponent be to caller component
+        this.callingButton = 'kicsi'; //button html code
+        this.userLoged = false;
     }
-    mYModalComponent.prototype.close = function () {
-        this.modal.close();
+    ModalComponent.prototype.ngOnInit = function () {
     };
-    mYModalComponent.prototype.open = function () {
-        this.modal.open();
+    ModalComponent.prototype.modalClosed = function () {
+        /* this.modalObject.name.value=this.originalValues.name;
+         this.modalObject.description=this.originalValues.description;
+    
+         this.onModalClosed.emit('');*/
     };
-    __decorate([
-        core_1.ViewChild('myModal'), 
-        __metadata('design:type', ng2_bs3_modal_1.ModalComponent)
-    ], mYModalComponent.prototype, "modal", void 0);
-    mYModalComponent = __decorate([
+    ModalComponent.prototype.modalOpen = function (modal) {
+        this.userLoged = this._AuthService.logged;
+        this.openedPopUp.emit(modal);
+        modal.open();
+    };
+    ModalComponent.prototype.confirm = function () {
+        this.valueConfirmed.emit('true');
+    };
+    ModalComponent = __decorate([
         core_1.Component({
-            selector: 'parent-component',
-            directives: [],
-            template: "\n        <modal #myModal>\n            ...\n        </modal>\n    "
+            moduleId: module.id,
+            selector: 'app-modal',
+            templateUrl: 'modal.component.html',
+            styleUrls: ['modal.component.css'],
+            inputs: ['callingButton'],
+            outputs: ['valueConfirmed', 'openedPopUp'],
+            directives: [ng2_bs3_modal_1.MODAL_DIRECTIVES],
         }), 
-        __metadata('design:paramtypes', [])
-    ], mYModalComponent);
-    return mYModalComponent;
+        __metadata('design:paramtypes', [auth_service_1.AuthService])
+    ], ModalComponent);
+    return ModalComponent;
 }());
-exports.mYModalComponent = mYModalComponent;
+exports.ModalComponent = ModalComponent;
 //# sourceMappingURL=modal.component.js.map

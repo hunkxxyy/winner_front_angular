@@ -1,7 +1,8 @@
 
 
 
-<div style="position: relative; height: 220px" (mouseover)="showArrow=true" (mouseleave)="showArrow=false">
+
+<div  *ngIf="movingObjectArray.length>0" style="position: relative; height: 220px" (mouseover)="showArrow=true" (mouseleave)="showArrow=false">
   <div  *ngIf="showArrow" style="position: absolute;left: 0px;top:90px;z-index: 9999">
     <span (click)="prev()" class="nextarrow">&#xf104;</span>
   </div>
@@ -14,4 +15,8 @@
       <ingatlan (ingatlanSelected)="onIngatlanSelect($event)" [ingatlanObject]=object></ingatlan>
     </li>
   </ul>
+</div>
+
+<div  *ngIf="movingObjectArray.length==0" style="position: relative; height: 220px" >
+  <div class="noresult">Nincs olyan ingatlan amihez sorsjegyet vásárolt!</div>
 </div>

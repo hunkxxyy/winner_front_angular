@@ -11,35 +11,35 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var hunkRichTexteditor_component_1 = require('../../components/hunk-richtexteditor/hunkRichTexteditor.component');
 var API_service_1 = require('../../globals/services/API.service');
+var error_service_1 = require('../../globals/services/error.service');
+var htmlcontents_service_1 = require('../../globals/services/htmlcontents.service');
 var KapcsolatComponent = (function () {
-    function KapcsolatComponent(_APIService) {
+    function KapcsolatComponent(_HtmlcontentsService, _APIService, _ErrorService) {
+        this._HtmlcontentsService = _HtmlcontentsService;
         this._APIService = _APIService;
-        this.content = '';
-        this.cim = '';
+        this._ErrorService = _ErrorService;
+        this.content = { name: '', phone: '', email: '', comments: '' };
     }
-    KapcsolatComponent.prototype.ngOnInit = function () {
+    KapcsolatComponent.prototype.sendMessage = function () {
         var _this = this;
-        this._APIService.getResponseGET('api/kapcsolat/', '').subscribe(function (data) {
-            _this.content = data.tartalom;
-            _this.cim = data.cim;
-        }, function (error) {
-            console.log(error);
-        });
-    };
-    KapcsolatComponent.prototype.contentSaved = function (data) {
-        this.content = data;
-        this.save();
-    };
-    KapcsolatComponent.prototype.cimSaved = function (data) {
-        this.cim = data;
-        this.save();
-    };
-    KapcsolatComponent.prototype.save = function () {
-        var _this = this;
-        var params = { id: 1, tartalom: this.content, cim: this.cim };
-        this._APIService.getResponse('api/kapcsolat/', params).subscribe(function (data) {
-            _this.content = data.tartalom;
-            _this.cim = data.cim;
+        this._APIService.getResponse('api/kapcsolat/email/', this.content).subscribe(function (data) {
+            _this._ErrorService.errorClear();
+            if (data.success) {
+                _this.content = { name: '', phone: '', email: '', comments: '' };
+                var error = {
+                    type: error_service_1.MessageTypes.mtSuccess,
+                    msg: [data.success]
+                };
+                _this._ErrorService.setErrorMsg(error);
+            }
+            console.log(data);
+            if (data.message) {
+                var error = {
+                    type: error_service_1.MessageTypes.mtDanger,
+                    msg: data.message.errors
+                };
+                _this._ErrorService.setErrorMsg(error);
+            }
         }, function (error) {
             console.log(error);
         });
@@ -53,7 +53,7 @@ var KapcsolatComponent = (function () {
             directives: [hunkRichTexteditor_component_1.HunkRichTextComponent],
             providers: [API_service_1.APIService]
         }), 
-        __metadata('design:paramtypes', [API_service_1.APIService])
+        __metadata('design:paramtypes', [htmlcontents_service_1.HtmlcontentsService, API_service_1.APIService, error_service_1.ErrorService])
     ], KapcsolatComponent);
     return KapcsolatComponent;
 }());

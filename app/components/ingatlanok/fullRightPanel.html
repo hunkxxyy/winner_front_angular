@@ -55,7 +55,7 @@
         </li>
         <li>
             <div class="field">Függőben lévő vásárlások</div>
-            <div class="value">{{ingatlanObject.fuggo_sorsjegyek}}</div>
+            <div class="value">{{fuggobenVan}}</div>
         </li>
         <li>
             <div class="field">Vásárolható sorsjegyek</div>
@@ -70,21 +70,13 @@
             <div class="field" style="height: 40px">Legtöbb sorsjeggyel rendelkezők:</div>
             <div class="value" style=" width: 90%;  color: black; font-weight: normal;">
                 <table>
-                    <tr>
+                    <tr >
                         <th>Név</th>
                         <th>Sorsjegy db.</th>
                     </tr>
-                    <tr>
-                        <td>I. István</td>
-                        <td>4 db.</td>
-                    </tr>
-                    <tr >
-                        <td >I. István</td>
-                        <td >4 db.</td>
-                    </tr>
-                    <tr>
-                        <td>I. István</td>
-                        <td>4 db.</td>
+                    <tr  *ngFor="let lista of toplista, let i=index">
+                        <td align="left">{{lista.name}}</td>
+                        <td>{{lista.db}} db.</td>
                     </tr>
 
 

@@ -16,11 +16,13 @@ var ErrorService = (function () {
         return this._errorMsg;
     };
     ErrorService.prototype.setErrorMsg = function (msg) {
+        //   console.log(msg);
         // this.errorClear();
         //if (succesError!=this.errorSucces) this.errorClear();
         this.messageType = msg.type;
         this.errorClear();
-        this._errorMsg.push(msg.msg);
+        this._errorMsg = msg.msg;
+        //  console.log(msg.msg.length);
         /* console.log('error service msg:');
          console.log(msg);*/
     };

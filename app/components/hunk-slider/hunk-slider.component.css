@@ -38,3 +38,11 @@ li {
   border-radius:5px;
 
 }
+.noresult{
+  border: dotted 1px #dc5046;
+  border-radius: 20px;
+  height: 100%;
+  text-align: center;
+  padding-top: 60px;
+  font-size: 25px;
+}

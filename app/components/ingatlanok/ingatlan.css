@@ -18,10 +18,30 @@
 }
 h5 {
     font-size: 11px;
-    font-weight: 100
+    font-weight: 100;
+    text-align: left;
 }
 .price{
     font-size: 14px;
     width: 140px;
+
+}
+.property-info{
+    padding: 6px;
+}
+.vasarolt-ticket, .jovahagyott-ticket{
+    background-color: #3a98d8;
+    color: white;
+    padding: 2px;
+    border-radius: 5px;
+    border: dashed 1px #fff;
+    cursor: pointer;
+}
+.jovahagyott-ticket{
+    background-color: #41c120;
+
+}
+.ticketseparator{
+  height: 5px;
 
 }
