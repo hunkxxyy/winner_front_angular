@@ -55,7 +55,7 @@
         </li>
         <li>
             <div class="field">Függőben lévő vásárlások</div>
-            <div class="value">{{fuggobenVan}}</div>
+            <div class="value">{{ingatlanObject.fuggobenVan}}</div>
         </li>
         <li>
             <div class="field">Vásárolható sorsjegyek</div>
@@ -74,7 +74,7 @@
                         <th>Név</th>
                         <th>Sorsjegy db.</th>
                     </tr>
-                    <tr  *ngFor="let lista of toplista, let i=index">
+                    <tr  *ngFor="let lista of ingatlanObject.toplista, let i=index">
                         <td align="left">{{lista.name}}</td>
                         <td>{{lista.db}} db.</td>
                     </tr>
