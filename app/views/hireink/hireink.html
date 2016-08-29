@@ -27,7 +27,7 @@
                             <p><small class="text-muted"><i class="fa fa-calendar"></i> {{hir.datum | hunkDate:'magyar'}}</small></p>
                         </div>
                         <div class="timeline-body"  >
-                            <p style="white-space: pre-wrap;" [innerHtml]="hir.content"></p>
+                            <app-my-inner-html [htmlContent]="hir.content"></app-my-inner-html>
                         </div>
                     </div>
                 </li>

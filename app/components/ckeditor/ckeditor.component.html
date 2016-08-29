@@ -1,0 +1,20 @@
+<div class="row">
+    <div class="col-lg-{{(imagelistShow)?'9':'12'}}">
+        <ckeditor name="content" #content
+                  [value]="htmlValue"
+                  (ready)="editorReady($event)"
+                  (change)="change($event)"
+                ></ckeditor>
+        <div *ngIf="fileUploader">
+            Képlista: <input type="checkbox" [(ngModel)]="imagelistShow">
+        </div>
+    </div>
+    <div *ngIf="imagelistShow" class="col-lg-3">
+        <app-file-uploader
+                [PATH]="PATH"
+                [INDEX]="INDEX"
+                [imgParams]="imgParams"
+                ></app-file-uploader>
+    </div>
+
+</div>

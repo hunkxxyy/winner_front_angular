@@ -62,8 +62,8 @@
                                             <td align="center" width="20%" >
 
 
-                                                <span style="text-align: center;color: orangered;font-weight: bold" *ngIf="!vasarlas.jovahagyva">Megrendelve:<br> {{vasarlas.created_at}}</span>
-                                                <span style="text-align: center;color: green;font-weight: bold"  *ngIf="vasarlas.jovahagyva">Átutalva:<br> {{vasarlas.updated_at}}<div style="font-weight: normal;font-size: 10px;color:black">(megrendelve:<br>{{vasarlas.created_at}})</div></span>
+                                                <span style="text-align: center;color: orangered;font-weight: bold" *ngIf="vasarlas.jovahagyva==0">Megrendelve:<br> {{vasarlas.created_at}}</span>
+                                                <span style="text-align: center;color: green;font-weight: bold"  *ngIf="vasarlas.jovahagyva==1">Átutalva:<br> {{vasarlas.updated_at}}<div style="font-weight: normal;font-size: 10px;color:black">(megrendelve:<br>{{vasarlas.created_at}})</div></span>
 
 
 

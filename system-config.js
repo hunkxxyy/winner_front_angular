@@ -45,11 +45,17 @@ var barrels = [
     'app/views/kapcsolat',
     'app/components/hunk-slider',
     'app/components/szavazogomb/modal',
+    'app/components/ckeditor',
+    'app/components/hunk-img',
+    'app/components/my-inner-html',
 ];
 var cliSystemConfigPackages = {
     'ng2-bs3-modal': {
         defaultExtension: 'js',
         main: 'ng2-bs3-modal.js'
+    },
+    'ng2-ckeditor': {
+        format: 'cjs'
     }
 };
 barrels.forEach(function (barrelName) {
@@ -61,7 +67,8 @@ System.config({
         '@angular': 'vendor/@angular',
         'rxjs': 'vendor/rxjs',
         'main': 'main.js',
-        'ng2-bs3-modal': 'vendor/ng2-bs3-modal'
+        'ng2-bs3-modal': 'vendor/ng2-bs3-modal',
+        'ng2-ckeditor': 'vendor/ng2-ckeditor/lib/CKEditor.js',
     },
     packages: cliSystemConfigPackages
 });

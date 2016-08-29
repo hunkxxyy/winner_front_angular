@@ -19,6 +19,7 @@
                 <button class="fa fa-code"
                         (click)="onShowSource()"></button>
                 <button class="fa fa-save" (click)="save()"></button>
+                    <!--<button (click)="onCompressSource()">comp</button>-->
             </div>
         </div>
         <div *ngIf="isEditing">
@@ -76,6 +77,8 @@
                         <option *ngFor="let color of fontColors, let i=index" style="background-color: {{color}};widht:60px" value="{{color}}" >{{color}}</option>
 
                     </select>
+                    <button
+                            (click)="insertImg()">IMG</button>
                     <!--Előre formázott:
                     <select #customClass (change)="changeFontColor(customClass.value)">
                         <option *ngFor="let customClass of customClasses, let i=index">{{customClass.name}}</option>

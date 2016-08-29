@@ -58,8 +58,10 @@
                                     {{new.title}}
 
                                 </td>
-                                <td align="left">
-                                    {{new.content}}
+                               <!-- <td align="left" [innerHtml]="new.content">-->
+                                <td>
+                                    <app-my-inner-html
+                                            [htmlContent]="new.content"></app-my-inner-html>
 
                                 </td>
 
