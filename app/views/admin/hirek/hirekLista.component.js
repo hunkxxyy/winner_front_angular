@@ -17,10 +17,13 @@ var error_service_1 = require('../../../globals/services/error.service');
 var hunkCurrency_pipe_1 = require('../../../globals/pipes/hunkCurrency.pipe');
 var mark_pipe_1 = require('../../../globals/pipes/mark.pipe');
 var hunkDate_pipe_1 = require('../../../globals/pipes/hunkDate.pipe');
+var platform_browser_1 = require('@angular/platform-browser');
+var my_inner_html_component_1 = require('../../../components/my-inner-html/my-inner-html.component');
 var HirekListaComponent = (function () {
-    function HirekListaComponent(_APIService, _ErrorService) {
+    function HirekListaComponent(_APIService, _ErrorService, domSanitizationService) {
         this._APIService = _APIService;
         this._ErrorService = _ErrorService;
+        this.domSanitizationService = domSanitizationService;
         this.searchByText = false;
         this.operationMenu = dropDownLists_1.OPERATIONMENU;
         this.orderByMenu = dropDownLists_1.ORDERBYMENU;
@@ -141,6 +144,9 @@ var HirekListaComponent = (function () {
         else {
         }
     };
+    HirekListaComponent.prototype.getContent = function (content) {
+        return this.domSanitizationService.bypassSecurityTrustHtml(content);
+    };
     HirekListaComponent = __decorate([
         core_1.Component({
             selector: 'ingatlan-lisa',
@@ -148,10 +154,10 @@ var HirekListaComponent = (function () {
             templateUrl: 'hirekLista.html',
             providers: [API_service_1.APIService],
             styleUrls: ["hirekLista.css"],
-            directives: [header_component_1.AdminHirekHeaderComponent, router_1.ROUTER_DIRECTIVES],
-            pipes: [hunkCurrency_pipe_1.hunkCurrencyPipe, mark_pipe_1.markPipe, hunkDate_pipe_1.hunkDate]
+            directives: [header_component_1.AdminHirekHeaderComponent, router_1.ROUTER_DIRECTIVES, my_inner_html_component_1.MyInnerHtmlComponent],
+            pipes: [hunkCurrency_pipe_1.hunkCurrencyPipe, mark_pipe_1.markPipe, hunkDate_pipe_1.hunkDate],
         }), 
-        __metadata('design:paramtypes', [API_service_1.APIService, error_service_1.ErrorService])
+        __metadata('design:paramtypes', [API_service_1.APIService, error_service_1.ErrorService, platform_browser_1.DomSanitizationService])
     ], HirekListaComponent);
     return HirekListaComponent;
 }());

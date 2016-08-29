@@ -18,6 +18,7 @@ var hirekDeffault_1 = require("./hirekDeffault");
 var global_constats_1 = require("../../../utils/global.constats");
 var hunkDate_pipe_1 = require("../../../globals/pipes/hunkDate.pipe");
 var DateTimePicker_component_1 = require("../../../components/date-time-picker/DateTimePicker.component");
+var ckeditor_component_1 = require("../../../components/ckeditor/ckeditor.component");
 var URL = global_constats_1.globals.backendIp + 'api/hirek_kepek';
 var HirekModifyComponent = (function () {
     function HirekModifyComponent(_ErrorService, _ApiSrvice, _AuthService, _RouteParams) {
@@ -25,6 +26,7 @@ var HirekModifyComponent = (function () {
         this._ApiSrvice = _ApiSrvice;
         this._AuthService = _AuthService;
         this._RouteParams = _RouteParams;
+        this.ckeditorAvaible = false;
         this.news = new hirekDeffault_1.HirekDeffault;
     }
     ;
@@ -84,12 +86,14 @@ var HirekModifyComponent = (function () {
                 .subscribe(function (data) {
                 console.log(data);
                 _this.news = data;
+                _this.ckeditorAvaible = true;
                 //console.log(this.kepek);
             }, function (error) {
                 console.log(error);
             });
         }
         else {
+            this.ckeditorAvaible = true;
         }
     };
     HirekModifyComponent.prototype.onDateChanged = function (event) {
@@ -99,12 +103,15 @@ var HirekModifyComponent = (function () {
         this.news.datum = newdate;
         //  console.log(event+'---> '+old);
     };
+    HirekModifyComponent.prototype.onValueChanged = function (event) {
+        this.news.content = event;
+    };
     HirekModifyComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'hirek-modify',
             templateUrl: 'hirekModify.html',
-            directives: [header_component_1.AdminHirekHeaderComponent, DateTimePicker_component_1.DateTimePickerComponent],
+            directives: [header_component_1.AdminHirekHeaderComponent, DateTimePicker_component_1.DateTimePickerComponent, ckeditor_component_1.CkeditorComponent],
             styleUrls: ['hirek-modify.css'],
             providers: [API_service_1.APIService],
             pipes: [hunkDate_pipe_1.hunkDate]

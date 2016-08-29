@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
+var hunk_img_component_1 = require('../../components/hunk-img/hunk-img.component');
 var HunkRichTextComponent = (function () {
     function HunkRichTextComponent(_element, domSanitizationService) {
         this._element = _element;
@@ -69,7 +70,7 @@ var HunkRichTextComponent = (function () {
         console.log(htmlContent);
         return htmlContent;
     };
-    HunkRichTextComponent.prototype.insertAction = function (tagBefore, tagAfter) {
+    HunkRichTextComponent.prototype.insertAction = function (tagBefore, tagAfter, object) {
         var sel = window.getSelection();
         /*console.log(sel.focusNode.parentNode.style);
          console.log(sel);*/
@@ -87,14 +88,15 @@ var HunkRichTextComponent = (function () {
             range.insertNode(fragment);
             this.refresh();
             if (sel.toString() == "")
-                this.putFocusInsideTag();
+                this.putFocusInsideTag(object);
         }
     };
-    HunkRichTextComponent.prototype.putFocusInsideTag = function () {
+    HunkRichTextComponent.prototype.putFocusInsideTag = function (object) {
         var el = window.getSelection().focusNode.nextSibling;
         var range = document.createRange();
         var sel = window.getSelection();
-        range.setStart(el, 1);
+        if (!object)
+            range.setStart(el, 1);
         range.collapse(true);
         sel.removeAllRanges();
         sel.addRange(range);
@@ -109,17 +111,17 @@ var HunkRichTextComponent = (function () {
     };
     /*Gloabals Editing Begin*/
     HunkRichTextComponent.prototype.changeFontSize = function (fontsize) {
-        this.insertAction('<span style=font-size:' + fontsize + 'px;>', '</span>');
+        this.insertAction('<span style=font-size:' + fontsize + 'px;>', '</span>', true);
         //   this.changelineSize(fontsize*1.4);
     };
     HunkRichTextComponent.prototype.changeFontColor = function (color) {
-        this.insertAction('<span style=color:' + color + '>', '</span>');
+        this.insertAction('<span style=color:' + color + '>', '</span>', false);
     };
     HunkRichTextComponent.prototype.changebgColor = function (color) {
-        this.insertAction('<span style=background-color:' + color + '>', '</span>');
+        this.insertAction('<span style=background-color:' + color + '>', '</span>', false);
     };
     HunkRichTextComponent.prototype.changelineSize = function (fontsize) {
-        this.insertAction('<span style=line-height:' + fontsize + 'px>', '</span>');
+        this.insertAction('<span style=line-height:' + fontsize + 'px>', '</span>', false);
     };
     HunkRichTextComponent.prototype.onChangeMainStyle = function (way) {
         switch (way) {
@@ -135,6 +137,14 @@ var HunkRichTextComponent = (function () {
         var html = this.domSanitizationService.bypassSecurityTrustHtml(this.htmlcontent);
         return html;
     };
+    HunkRichTextComponent.prototype.insertImg = function () {
+        this.insertAction(
+        /*  '<img src="template/images/eredmenyhirdetes/02.jpg" > ', '',true*/
+        '<app-hunk-img" >', '</app-hunk-img>', true);
+    };
+    HunkRichTextComponent.prototype.teszt = function () {
+        alert('csoda');
+    };
     __decorate([
         core_1.ViewChild('editorContent'), 
         __metadata('design:type', core_1.ElementRef)
@@ -146,7 +156,7 @@ var HunkRichTextComponent = (function () {
             templateUrl: 'richtextview.html',
             providers: [],
             styleUrls: ["richtextview.css"],
-            directives: [],
+            directives: [hunk_img_component_1.HunkImgComponent],
             inputs: ['htmlcontent', 'saveIconBarTop'],
             outputs: ['saved']
         }), 

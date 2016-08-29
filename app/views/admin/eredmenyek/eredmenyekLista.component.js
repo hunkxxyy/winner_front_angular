@@ -17,6 +17,7 @@ var error_service_1 = require('../../../globals/services/error.service');
 var hunkCurrency_pipe_1 = require('../../../globals/pipes/hunkCurrency.pipe');
 var mark_pipe_1 = require('../../../globals/pipes/mark.pipe');
 var hunkDate_pipe_1 = require('../../../globals/pipes/hunkDate.pipe');
+var my_inner_html_component_1 = require('../../../components/my-inner-html/my-inner-html.component');
 var EredmenyekListaComponent = (function () {
     function EredmenyekListaComponent(_APIService, _ErrorService) {
         this._APIService = _APIService;
@@ -148,7 +149,7 @@ var EredmenyekListaComponent = (function () {
             templateUrl: 'eredmenyekLista.html',
             providers: [API_service_1.APIService],
             styleUrls: ["eredmenyekLista.css"],
-            directives: [header_component_1.AdminEredmenyekHeaderComponent, router_1.ROUTER_DIRECTIVES],
+            directives: [header_component_1.AdminEredmenyekHeaderComponent, router_1.ROUTER_DIRECTIVES, my_inner_html_component_1.MyInnerHtmlComponent],
             pipes: [hunkCurrency_pipe_1.hunkCurrencyPipe, mark_pipe_1.markPipe, hunkDate_pipe_1.hunkDate]
         }), 
         __metadata('design:paramtypes', [API_service_1.APIService, error_service_1.ErrorService])

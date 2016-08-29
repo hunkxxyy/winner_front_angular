@@ -12,6 +12,7 @@ var core_1 = require('@angular/core');
 //import {globals} from '../../globals/global.constats';
 var API_service_1 = require('../../globals/services/API.service');
 var hunkDate_pipe_1 = require('../../globals/pipes/hunkDate.pipe');
+var my_inner_html_component_1 = require('../../components/my-inner-html/my-inner-html.component');
 var HireinkComponent = (function () {
     function HireinkComponent(_APIService) {
         this._APIService = _APIService;
@@ -36,7 +37,7 @@ var HireinkComponent = (function () {
             templateUrl: 'hireink.html',
             providers: [API_service_1.APIService],
             styleUrls: [""],
-            directives: [],
+            directives: [my_inner_html_component_1.MyInnerHtmlComponent],
             pipes: [hunkDate_pipe_1.hunkDate]
         }), 
         __metadata('design:paramtypes', [API_service_1.APIService])

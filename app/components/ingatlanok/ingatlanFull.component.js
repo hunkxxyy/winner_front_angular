@@ -16,7 +16,7 @@ var IngatlanFullComponent = (function () {
         this.host = global_constats_1.globals.backendIp;
     }
     IngatlanFullComponent.prototype.pictureChange = function (pic) {
-        this.ingatlanObject.defaultImg.paths.kozepes = pic.paths.kozepes;
+        this.ingatlanObject.defaultImg.paths.nagy = pic.paths.nagy;
     };
     IngatlanFullComponent.prototype.ngOnInit = function () {
     };
