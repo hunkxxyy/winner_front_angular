@@ -48,9 +48,20 @@ var MenuBarComponent = (function () {
             console.log(data);
             if (data.msg == 'login success') {
                 //this.reloadMenu(data.oauth.access_token);
-                _this.logged = _this._AuthService.setUser({ access_token: data.oauth.access_token });
+                _this.logged = _this._AuthService.setUser({
+                    access_token: data.oauth.access_token
+                });
                 _this.reloadMenu();
+                _this.setUserType();
             }
+        }, function (error) {
+            console.log(error);
+        });
+    };
+    MenuBarComponent.prototype.setUserType = function () {
+        var _this = this;
+        this._APIService.getResponseGET('oauth/usertype/', '').subscribe(function (data) {
+            _this._AuthService.setUserType(data);
         }, function (error) {
             console.log(error);
         });
@@ -73,9 +84,9 @@ var MenuBarComponent = (function () {
             console.log(data);
             _this.middleMenus = data.menuArr;
         }, function (error) {
-            console.log(error);
-            _this._AuthService.userDestroy();
-            _this.reloadMenu();
+            /*   console.log(error);
+           this._AuthService.userDestroy();
+             this.reloadMenu();*/
         });
     };
     MenuBarComponent.prototype.ngOnInit = function () {

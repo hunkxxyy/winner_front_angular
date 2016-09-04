@@ -18,10 +18,16 @@
 
 
   </modal-body>
-  <modal-footer class="modal-footer">
+  <modal-footer  *ngIf="cancelBtnCaption==''" class="modal-footer">
 
     <a (click)="confirm()" data-dismiss="modal"><button type="submit" class="btn btn-danger pull-right">Törlés</button></a>
     <button  (click)="modal.close(); modalClosed()" type="submit" class="btn btn-default pull-right">Mégse</button>
+
+  </modal-footer>
+  <modal-footer  *ngIf="cancelBtnCaption!=''" class="modal-footer">
+
+
+    <button  (click)="modal.close(); modalClosed()" type="submit" class="btn btn-default pull-right">{{cancelBtnCaption}}</button>
 
   </modal-footer>
 </modal>

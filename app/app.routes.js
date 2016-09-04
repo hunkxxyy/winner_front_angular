@@ -1,7 +1,6 @@
 "use strict";
 var router_1 = require('@angular/router');
 var ingatlanokView_component_1 = require('./views/ingatlanok/ingatlanokView.component');
-var dynamic_component_1 = require("./views/dynamic/dynamic.component");
 var admin_component_1 = require("./views/admin/admin.component");
 var ingatlanlista_component_1 = require("./views/admin/ingatlanok/ingatlanlista.component");
 var eredmenyekLista_component_1 = require("./views/admin/eredmenyek/eredmenyekLista.component");
@@ -16,7 +15,10 @@ var hireink_component_1 = require("./views/hireink/hireink.component");
 var kapcsolat_component_1 = require("./views/kapcsolat/kapcsolat.component");
 var dynamic_html_component_1 = require("./views/dynamic-html/dynamic-html.component");
 var regisztracio_component_1 = require("./views/regisztracio/regisztracio.component");
+var editable_view_component_1 = require("./components/editable-view/editable-view.component");
 var adataim_component_1 = require("./views/adataim/adataim.component");
+var forgot_password_component_1 = require("./views/forgot-password/forgot-password.component");
+var changeforgottenpassord_component_1 = require("./views/changeforgottenpassord/changeforgottenpassord.component");
 var APP_ROUTES = [
     { path: 'ingatlanok', component: ingatlanokView_component_1.IngatlanokViewComponent },
     { path: 'admin', component: admin_component_1.AdminViewComponent },
@@ -36,8 +38,11 @@ var APP_ROUTES = [
     { path: 'kapcsolat', component: kapcsolat_component_1.KapcsolatComponent },
     { path: 'temp', component: dynamic_html_component_1.DynamicHtmlComponent },
     { path: 'adataim', component: adataim_component_1.AdataimViewComponent },
+    { path: 'forgotpass', component: forgot_password_component_1.ForgotPasswordComponent },
+    { path: 'changeforgottenpassord/:id', component: changeforgottenpassord_component_1.ChangeforgottenpassordComponent },
     { path: 'regisztracio', component: regisztracio_component_1.RegisztracioViewComponent },
-    { path: ':id', component: dynamic_component_1.DynamicComponent },
+    /*{/!*UTOLSÓ!!!!!*!/path: ':id',component: DynamicComponent},*/
+    { path: ':id', component: editable_view_component_1.EditableViewComponent },
     { path: '', redirectTo: '/ingatlanok' },
 ];
 exports.APP_ROUTES_PROVIDER = [

@@ -14,6 +14,7 @@ var ConfirmComponent = (function () {
     function ConfirmComponent() {
         this.valueConfirmed = new core_1.EventEmitter(); //the question has confirmed
         this.openedPopUp = new core_1.EventEmitter(); //get a modalcomponent be to caller component
+        this.cancelBtnCaption = '';
     }
     ConfirmComponent.prototype.ngOnInit = function () {
     };
@@ -30,13 +31,20 @@ var ConfirmComponent = (function () {
     ConfirmComponent.prototype.confirm = function () {
         this.valueConfirmed.emit('true');
     };
+    ConfirmComponent.prototype.popIt = function () {
+        this.modal.open();
+    };
+    __decorate([
+        core_1.ViewChild('modal'), 
+        __metadata('design:type', Object)
+    ], ConfirmComponent.prototype, "modal", void 0);
     ConfirmComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'app-confirm',
             templateUrl: 'confirm.component.html',
             styleUrls: ['confirm.component.css'],
-            inputs: ['callingButton', 'question', 'title'],
+            inputs: ['callingButton', 'question', 'title', 'cancelBtnCaption'],
             outputs: ['valueConfirmed', 'openedPopUp'],
             directives: [ng2_bs3_modal_1.MODAL_DIRECTIVES],
         }), 

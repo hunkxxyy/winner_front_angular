@@ -19,6 +19,7 @@ var mark_pipe_1 = require('../../../globals/pipes/mark.pipe');
 var hunkDate_pipe_1 = require('../../../globals/pipes/hunkDate.pipe');
 var platform_browser_1 = require('@angular/platform-browser');
 var my_inner_html_component_1 = require('../../../components/my-inner-html/my-inner-html.component');
+var hunkhtml_directive_1 = require('../../../directives/hunkhtml.directive');
 var HirekListaComponent = (function () {
     function HirekListaComponent(_APIService, _ErrorService, domSanitizationService) {
         this._APIService = _APIService;
@@ -154,7 +155,7 @@ var HirekListaComponent = (function () {
             templateUrl: 'hirekLista.html',
             providers: [API_service_1.APIService],
             styleUrls: ["hirekLista.css"],
-            directives: [header_component_1.AdminHirekHeaderComponent, router_1.ROUTER_DIRECTIVES, my_inner_html_component_1.MyInnerHtmlComponent],
+            directives: [header_component_1.AdminHirekHeaderComponent, router_1.ROUTER_DIRECTIVES, my_inner_html_component_1.MyInnerHtmlComponent, hunkhtml_directive_1.Hunkhtml],
             pipes: [hunkCurrency_pipe_1.hunkCurrencyPipe, mark_pipe_1.markPipe, hunkDate_pipe_1.hunkDate],
         }), 
         __metadata('design:paramtypes', [API_service_1.APIService, error_service_1.ErrorService, platform_browser_1.DomSanitizationService])

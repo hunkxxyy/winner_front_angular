@@ -1,6 +1,8 @@
 "use strict";
+var TYPES_1 = require('../TYPES');
 var AuthService = (function () {
     function AuthService() {
+        this.userType = TYPES_1.Privilegium.prNotSigned;
         this.logged = false;
         //  this.userDestroy();
         this.getUser();
@@ -11,15 +13,20 @@ var AuthService = (function () {
     AuthService.prototype.getUser = function () {
         if (!this.user) {
             var token = this.getCookie('access_token');
+            var privilegium = this.getCookie('privilegium');
             if (token) {
                 this.user = {
-                    access_token: token
+                    access_token: token,
                 };
+                this.userType = +privilegium;
                 console.log(this.user);
                 this.logged = true;
             }
             else {
-                this.user = { access_token: '' };
+                this.user = {
+                    access_token: ''
+                };
+                this.userType = TYPES_1.Privilegium.prNotSigned;
                 this.logged = false;
             }
         }
@@ -27,14 +34,20 @@ var AuthService = (function () {
     };
     AuthService.prototype.userDestroy = function () {
         this.setCookie('access_token', '', 1);
+        this.setCookie('privilegium', 0, 1);
+        this.userType = TYPES_1.Privilegium.prNotSigned;
         this.logged = false;
         return this.logged;
     };
     AuthService.prototype.setUser = function (authType) {
         this.user = authType;
-        this.setCookie('access_token', this.user.access_token, 2);
+        this.setCookie('access_token', this.user.access_token, 7);
         this.logged = true;
         return this.logged;
+    };
+    AuthService.prototype.setUserType = function (privilegium) {
+        this.userType = privilegium;
+        this.setCookie('privilegium', privilegium, 7);
     };
     AuthService.prototype.setCookie = function (cname, cvalue, exdays) {
         var d = new Date();

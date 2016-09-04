@@ -13,12 +13,14 @@ var API_service_1 = require('../../globals/services/API.service');
 var auth_service_1 = require('../../globals/services/auth.service');
 var kivalasztott_ingatlanok_service_1 = require('../../globals/services/kivalasztott-ingatlanok.service');
 var modal_component_1 = require('./modal/modal.component');
+var confirm_component_1 = require('../../components/confirm/confirm.component');
 var SzavazoGombComponent = (function () {
     function SzavazoGombComponent(_APIService, _AuthService, _KivalasztottIngatlanokService) {
         this._APIService = _APIService;
         this._AuthService = _AuthService;
         this._KivalasztottIngatlanokService = _KivalasztottIngatlanokService;
         this.gombStyle = 'nagy';
+        this.confirmMsg = { title: '', body: '' };
         this.szavazogomb = "<img width=\"55px\" src=\"template/images/btn_licit.png\">";
         this.szavazogombNagy = " <button  type=\"button\" class=\"btn btn-custom\"> SORSJEGY V\u00C1S\u00C1RL\u00C1SA</button>";
     }
@@ -33,20 +35,30 @@ var SzavazoGombComponent = (function () {
             date: currentdate.getTime()
         };
         this._APIService.getResponse('api/licit/', obj).subscribe(function (data) {
-            _this.ingatlanObject.szazalek_ertekesitve = data.return;
-            _this._KivalasztottIngatlanokService.setKuvalasztottIngatlanok(data.kivalasztott_ingatlanok);
-            console.log(data);
+            if (data.return == 'overflow') {
+                _this.confirmMsg = data.msg;
+                _this.ticketMoreThanMaxPopUp.popIt();
+            }
+            else {
+                _this.ingatlanObject.szazalek_ertekesitve = data.return;
+                _this._KivalasztottIngatlanokService.setKuvalasztottIngatlanok(data.kivalasztott_ingatlanok);
+            }
+            // console.log(data);
         }, function (error) {
-            console.log(error);
+            // console.log(error);
         });
     };
+    __decorate([
+        core_1.ViewChild(confirm_component_1.ConfirmComponent), 
+        __metadata('design:type', confirm_component_1.ConfirmComponent)
+    ], SzavazoGombComponent.prototype, "ticketMoreThanMaxPopUp", void 0);
     SzavazoGombComponent = __decorate([
         core_1.Component({
             selector: 'szavazogomb',
             moduleId: module.id,
             templateUrl: 'szavazogomb.html',
             styleUrls: ["szavazogomb.css"],
-            directives: [modal_component_1.ModalComponent],
+            directives: [modal_component_1.ModalComponent, confirm_component_1.ConfirmComponent],
             inputs: ['gombStyle', 'ingatlanObject']
         }), 
         __metadata('design:paramtypes', [API_service_1.APIService, auth_service_1.AuthService, kivalasztott_ingatlanok_service_1.KivalasztottIngatlanokService])

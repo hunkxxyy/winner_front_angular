@@ -11,8 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var menuBar_conponent_1 = require('./components/header/menuBar.conponent');
-var menuBarTopComponent_1 = require('./components/menubar/menuBarTopComponent');
-var menuBarDownComponent_1 = require('./components/menubar/menuBarDownComponent');
 var footer_component_1 = require('./components/footer/footer.component');
 var errorView_components_1 = require("./components/error-view/errorView.components");
 var auth_service_1 = require("./globals/services/auth.service");
@@ -35,8 +33,6 @@ var AppComponent = (function () {
                 errorView_components_1.ErrorView,
                 router_1.ROUTER_DIRECTIVES,
                 menuBar_conponent_1.MenuBarComponent,
-                menuBarTopComponent_1.MenuBarTopComponent,
-                menuBarDownComponent_1.MenuBarDownComponent,
                 footer_component_1.FooterComponent
             ],
         }), 

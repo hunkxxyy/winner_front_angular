@@ -1,0 +1,61 @@
+<div class="parallax page-header" style="background-image:url('template/images/winners.png');">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Jelszó emlékeztető</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-hunk-toolbar-component
+        [show]="toolbarshow"
+        (toolbarLeave)="onToolbarLeave('changeforgottenpassord')"
+        (changeView)="onChangeView($event)"
+        (save)="saveContent()"
+        >
+</app-hunk-toolbar-component>
+<!-- End Page Header -->
+
+<!-- Start Content -->
+
+<div id="content" class="content full"   (mouseleave)="toolbarshow=true">
+  <div class="container">
+    <div class="page">
+      <div class="row">
+        <div class="col-md-6 col-sm-6 register-form">
+          <!--------------------------------------Editor Implant-------------------------------------->
+          <div class="inner"  >
+            <app-ckeditor
+                    *ngIf="editorshow"
+                    [htmlValue]="_HtmlcontentsService.getContent('changeforgottenpassord')"
+
+                    [INDEX]="changeforgottenpassord"
+
+                    [fileUploader]="false"
+                    (valueChanged)="onValueChanged($event)"
+                    ></app-ckeditor>
+          </div>
+          <!--------------------------------------Editor Implant-------------------------------------->
+          <div class="alert alert-default fade in"  *ngIf="!editorshow" hunkhtml [htmlContent]="_HtmlcontentsService.getContent('changeforgottenpassord')" ></div>
+
+        </div>
+
+        <div class="col-md-6 col-sm-6 register-form">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+              <input [(ngModel)]="currentUser.password"  type="password" class="form-control" placeholder="Jelszó">
+            </div>
+            <br>
+            <div class="input-group">
+
+              <span class="input-group-addon"><i class="fa fa-refresh"></i></span>
+              <input [(ngModel)]="currentUser.password2" id="pass2" type="password" class="form-control" placeholder="Jelszó ismét">
+            </div>
+            <br>
+            <button (click)="onSendNewPassword()" type="submit" class="btn btn-primary" style="float: right">Tovább</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

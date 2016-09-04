@@ -14,18 +14,18 @@ var HtmlcontentsService = (function () {
     function HtmlcontentsService(_APIService) {
         this._APIService = _APIService;
         this.kapcsolat_cim = '';
-        this.contents = {
-            kapcsolat_tartalom: "",
-            kapcsolat_cim: "",
-            regisztracio_mielott: "",
-            adataim_balbox: ""
-        };
         this.loadsAllContents();
     }
+    ;
+    HtmlcontentsService.prototype.getContent = function (index) {
+        if (this.contents) {
+            return this.contents[index].content;
+        }
+    };
     HtmlcontentsService.prototype.setContent = function (id, content) {
         var _this = this;
         this._APIService.getResponsePUT('api/setcontents/' + id, { tartalom: content }).subscribe(function (data) {
-            //console.log(data);
+            console.log(data);
             _this.loadsAllContents();
         }, function (error) {
             console.log(error);

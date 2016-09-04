@@ -16,3 +16,12 @@
 </div>
 <!--<div  *ngIf="gombStyle=='kicsi'" (click)="vasarlok()" style="float: right"><img width="55px" src="template/images/btn_licit.png"></div>-->
 <app-modal *ngIf="gombStyle=='kicsi'"  [callingButton]="'kicsi'" (valueConfirmed)="vasarlas_elfogadva()"></app-modal>
+<app-confirm
+        [title]="confirmMsg.title"
+        [question]="confirmMsg.body"
+
+        [cancelBtnCaption]="'Rendben'"
+        ></app-confirm>
+<!--
+<app-modal *ngIf="gombStyle=='moreThanMax'"  [callingButton]="'moreThanMax'" (valueConfirmed)="vasarlas_elfogadva()"></app-modal>
+-->

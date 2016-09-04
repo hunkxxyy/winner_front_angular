@@ -48,6 +48,12 @@ var barrels = [
     'app/components/ckeditor',
     'app/components/hunk-img',
     'app/components/my-inner-html',
+    'app/views/aszf-view-component',
+    'app/components/hunk-toolbar-component',
+    'app/views/adatvedelem-view',
+    'app/components/editable-view',
+    'app/views/forgot-password',
+    'app/views/changeforgottenpassord',
 ];
 var cliSystemConfigPackages = {
     'ng2-bs3-modal': {

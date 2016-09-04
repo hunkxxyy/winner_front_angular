@@ -10,17 +10,46 @@
 
   <!-- End Page Header -->
 </div>
+
+<app-hunk-toolbar-component
+        [show]="toolbar1show"
+        (toolbarLeave)="onToolbar1Leave('kapcsolat1')"
+        (changeView)="onChange1View($event)"
+        (save)="save1Content()"
+        >
+</app-hunk-toolbar-component>
+
 <!-- Start Content -->
 
-    <div class="container" style="padding-top: 20px">
+    <div class="container" style="padding-top: 20px"   (mouseleave)="toolbar1show=true">
       <div class="page">
         <div class="row">
           <div class="col-md-12 col-sm-12">
-            <hunk-richtext
+            <!--------------------------------------Editor Implant-------------------------------------->
+            <div class="inner"  >
+              <app-ckeditor
+                      *ngIf="editor1show"
+                      [htmlValue]="_HtmlcontentsService.getContent('kapcsolat1')"
+
+                      [INDEX]="kapcsolat1"
+
+                      [fileUploader]="false"
+                      (valueChanged)="onValueChanged1($event)"
+                      ></app-ckeditor>
+            </div>
+            <!--------------------------------------Editor Implant-------------------------------------->
+            <!--------------------------------------Content begin-------------------------------------->
+
+            <div  *ngIf="!editor1show" class="inner">
+              <div  hunkhtml [htmlContent]="_HtmlcontentsService.getContent('kapcsolat1')" ></div>
+            </div>
+            <!--------------------------------------Content end-------------------------------------->
+
+            <!--<hunk-richtext
               [htmlcontent]="_HtmlcontentsService.contents.kapcsolat_tartalom.content"
               (saved)="_HtmlcontentsService.setContent(_HtmlcontentsService.contents.kapcsolat_tartalom.id,$event)"
 
-              ></hunk-richtext>
+              ></hunk-richtext>-->
           </div>
           <div class="col-md-8 col-sm-8">
             <h3>Üzenet küldése</h3>
@@ -50,13 +79,35 @@
           </div>
           <div class="col-md-4 col-sm-4">
             <h3>Székhelyünk</h3>
-            <div class="lgray-bg" style="padding: 7px 0px 17px 0px">
+            <div class="lgray-bg" style="padding: 7px 0px 17px 0px" (mouseleave)="toolbar2show=true">
 
-              <p class="big">
-                <hunk-richtext
+
+               <!-- <hunk-richtext
                   [htmlcontent]="_HtmlcontentsService.contents.kapcsolat_cim.content"
                   (saved)="_HtmlcontentsService.setContent(_HtmlcontentsService.contents.kapcsolat_cim.id,$event)"
-                  ></hunk-richtext>
+                  ></hunk-richtext>-->
+
+
+                <app-hunk-toolbar-component
+                        [show]="toolbar2show"
+                        (toolbarLeave)="onToolbar2Leave('kapcsolat2')"
+                        (changeView)="onChange2View($event)"
+                        (save)="save2Content()"
+                        >
+                </app-hunk-toolbar-component>
+
+                <app-ckeditor
+                        *ngIf="editor2show"
+                        [htmlValue]="_HtmlcontentsService.getContent('kapcsolat2')"
+
+                        [INDEX]="kapcsolat2"
+
+                        [fileUploader]="false"
+                        (valueChanged)="onValueChanged2($event)"
+                        ></app-ckeditor>
+
+              <p class="big" *ngIf="!editor1show" hunkhtml [htmlContent]="_HtmlcontentsService.getContent('kapcsolat2')">
+
               </p>
               <img src="template/images/terkep.gif">
             </div>
