@@ -21,8 +21,8 @@ var MenuBarComponent = (function () {
         this.showSale = false;
         this.loginDropdownOpen = false;
         this.logged = false;
-        this.email = 'admin@gmail.com';
-        this.password = 'winnerPassword2016';
+        this.email = '';
+        this.password = '';
     }
     MenuBarComponent.prototype.onMouseOut = function (event) {
         var e = event.toElement || event.relatedTarget;
