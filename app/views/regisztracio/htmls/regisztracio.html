@@ -1,4 +1,4 @@
-<div class="parallax page-header" style="background-image:url(http://placehold.it/1200x260&amp;text=IMAGE+PLACEHOLDER);">
+<div class="parallax page-header" style="background-image:url('images/reg.png');">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -20,12 +20,12 @@
 
 
                           <hunk-richtext  *ngIf="submitButtonCaption=='Adatok módosítása'"
-                            [htmlcontent]="_HtmlcontentsService.contents.adataim_balbox.content"
+                            [htmlcontent]="_HtmlcontentsService.getContent('adataim_balbox')"
                             (saved)="_HtmlcontentsService.setContent(_HtmlcontentsService.contents.adataim_balbox.id,$event)"
 
                             ></hunk-richtext>
                           <hunk-richtext  *ngIf="submitButtonCaption!='Adatok módosítása'"
-                            [htmlcontent]="_HtmlcontentsService.contents.regisztracio_mielott.content"
+                            [htmlcontent]="_HtmlcontentsService.getContent('regisztracio_mielott')"
                             (saved)="_HtmlcontentsService.setContent(_HtmlcontentsService.contents.regisztracio_mielott.id,$event)"
 
                             ></hunk-richtext>
