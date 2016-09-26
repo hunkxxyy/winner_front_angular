@@ -1,4 +1,4 @@
-<div class="parallax page-header" style="background-image:url('images/reg.png');">
+<div (mouseleave)="toolbarshow=true" class="parallax page-header" style="background-image:url('images/reg.png');">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -7,32 +7,55 @@
         </div>
     </div>
 </div>
-<!-- End Page Header -->
 
+<!-- End Page Header -->
+<app-hunk-toolbar-component
+        [show]="toolbarshow"
+        (toolbarLeave)="toolbarshow=false"
+        (changeView)="onChange2View($event)"
+        (save)="save2Content()"
+        >
+</app-hunk-toolbar-component>
 <!-- Start Content -->
 
-    <div id="content" class="content full">
+    <div id="content" class="content full" >
         <div class="container">
+
             <div class="page">
                 <div class="row">
                     <div class="col-md-4 col-sm-4">
                         <div class="alert alert-default fade in">
 
 
-                          <hunk-richtext  *ngIf="submitButtonCaption=='Adatok módosítása'"
+                         <!-- <hunk-richtext  *ngIf="submitButtonCaption=='Adatok módosítása'"
                             [htmlcontent]="_HtmlcontentsService.getContent('adataim_balbox')"
                             (saved)="_HtmlcontentsService.setContent(_HtmlcontentsService.contents.adataim_balbox.id,$event)"
 
-                            ></hunk-richtext>
-                          <hunk-richtext  *ngIf="submitButtonCaption!='Adatok módosítása'"
+                            ></hunk-richtext>-->
+
+                            <app-ckeditor
+                                    *ngIf="editor2show"
+                                    [htmlValue]="_HtmlcontentsService.getContent(content)"
+
+                                    [INDEX]="kapcsolat1"
+
+                                    [fileUploader]="false"
+                                    (valueChanged)="onValueChanged2($event)"
+                                    ></app-ckeditor>
+                            <div  *ngIf="!editor2show"
+                                  hunkhtml [htmlContent]="_HtmlcontentsService.getContent(content)"
+                                  >
+                            </div>
+
+                        <!--  <hunk-richtext  *ngIf="submitButtonCaption!='Adatok módosítása'"
                             [htmlcontent]="_HtmlcontentsService.getContent('regisztracio_mielott')"
                             (saved)="_HtmlcontentsService.setContent(_HtmlcontentsService.contents.regisztracio_mielott.id,$event)"
 
-                            ></hunk-richtext>
+                            ></hunk-richtext>-->
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-4 register-form">
-                        <h3>Regisztráció</h3>
+                        <h3>{{(submitButtonCaption!='Adatok módosítása')?'Regisztráció':'Adatok módosítása'}}</h3>
 
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
