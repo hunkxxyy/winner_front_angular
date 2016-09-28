@@ -13,8 +13,11 @@ var error_service_1 = require("../../globals/services/error.service");
 var API_service_1 = require("../../globals/services/API.service");
 var global_constats_1 = require("../../utils/global.constats");
 var auth_service_1 = require('../../globals/services/auth.service');
-var hunkRichTexteditor_component_1 = require('../../components/hunk-richtexteditor/hunkRichTexteditor.component');
+var TYPES_1 = require('../../globals/TYPES');
 var htmlcontents_service_1 = require('../../globals/services/htmlcontents.service');
+var hunkhtml_directive_1 = require('../../directives/hunkhtml.directive');
+var ckeditor_component_1 = require('../../components/ckeditor/ckeditor.component');
+var hunk_toolbar_component_component_1 = require('../../components/hunk-toolbar-component/hunk-toolbar-component.component');
 var RegisztracioViewComponent = (function () {
     function RegisztracioViewComponent(_ErrorService, _APIService, _AuthService, _HtmlcontentsService) {
         this._ErrorService = _ErrorService;
@@ -23,6 +26,9 @@ var RegisztracioViewComponent = (function () {
         this._HtmlcontentsService = _HtmlcontentsService;
         this.currentUser = { name: '', email: '', password: '' };
         this.submitButtonCaption = 'Regisztráció';
+        this.content = 'regisztracio_mielott';
+        this.editor2show = false;
+        console.log(this._HtmlcontentsService);
     }
     ;
     RegisztracioViewComponent.prototype.onRegiser = function () {
@@ -56,22 +62,32 @@ var RegisztracioViewComponent = (function () {
             console.log(data);
             if (data.msg == 'login success') {
                 _this._AuthService.setUser({ access_token: data.oauth.access_token });
-                // window.location.href += "#/ingatlanok";
+                // window.location.href += "/#/ingatlanok";
                 window.location.reload();
             }
         });
     };
     RegisztracioViewComponent.prototype.ngOnInit = function () {
-        if (this._AuthService.logged)
+        if (this._AuthService.logged && this._AuthService.userType != TYPES_1.Privilegium.prAdmin)
             window.location.href = "#/ingatlanok";
+    };
+    RegisztracioViewComponent.prototype.onChange2View = function (viewMode) {
+        this.editor2show = (viewMode == 'edit') ? true : false;
+    };
+    RegisztracioViewComponent.prototype.onValueChanged2 = function (content) {
+        this._HtmlcontentsService.contents.regisztracio_mielott.content = content;
+    };
+    RegisztracioViewComponent.prototype.save2Content = function () {
+        this._HtmlcontentsService.setContent(this._HtmlcontentsService.contents.regisztracio_mielott.id, this._HtmlcontentsService.getContent('regisztracio_mielott'));
+        this.editor2show = false;
     };
     RegisztracioViewComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'regisztracio-view',
             templateUrl: 'htmls/regisztracio.html',
-            providers: [API_service_1.APIService],
-            directives: [hunkRichTexteditor_component_1.HunkRichTextComponent]
+            providers: [],
+            directives: [hunkhtml_directive_1.Hunkhtml, ckeditor_component_1.CkeditorComponent, hunk_toolbar_component_component_1.HunkToolbarComponentComponent]
         }), 
         __metadata('design:paramtypes', [error_service_1.ErrorService, API_service_1.APIService, auth_service_1.AuthService, htmlcontents_service_1.HtmlcontentsService])
     ], RegisztracioViewComponent);

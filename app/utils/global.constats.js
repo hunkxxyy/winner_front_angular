@@ -4,7 +4,7 @@ var globals = (function () {
     }
     Object.defineProperty(globals, "backendIp", {
         get: function () {
-            return (window.location.hostname == 'localhost') ? 'http://winner-back/' : 'http://winnerfront.oxhungary.hu/';
+            return (window.location.hostname == 'localhost') ? 'http://winner-back/' : 'http://back.winnerdraw.win/';
         },
         enumerable: true,
         configurable: true

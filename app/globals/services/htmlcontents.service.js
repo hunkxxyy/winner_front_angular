@@ -11,15 +11,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var API_service_1 = require('../services/API.service');
 var HtmlcontentsService = (function () {
+    /* public contents:any =
+     {
+       kapcsolat_tartalom: "",
+       kapcsolat_cim: "",
+       regisztracio_mielott: "",
+       adataim_balbox: "",
+       aszf:""
+     }
+  
+  
+      ;*/
     function HtmlcontentsService(_APIService) {
         this._APIService = _APIService;
         this.kapcsolat_cim = '';
         this.loadsAllContents();
     }
-    ;
     HtmlcontentsService.prototype.getContent = function (index) {
         if (this.contents) {
             return this.contents[index].content;
+        }
+    };
+    HtmlcontentsService.prototype.getTitle = function (index) {
+        if (this.contents) {
+            return this.contents[index].title;
         }
     };
     HtmlcontentsService.prototype.setContent = function (id, content) {
@@ -34,6 +49,7 @@ var HtmlcontentsService = (function () {
     HtmlcontentsService.prototype.loadsAllContents = function () {
         var _this = this;
         this._APIService.getResponseGET('api/getcontents/', '').subscribe(function (data) {
+            console.log(data);
             _this.contents = data;
         }, function (error) {
             console.log(error);

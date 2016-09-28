@@ -55,7 +55,8 @@ var MenuBarComponent = (function () {
                 _this.setUserType();
             }
         }, function (error) {
-            console.log(error);
+            _this.logged = _this._AuthService.userDestroy();
+            _this.reloadMenu();
         });
     };
     MenuBarComponent.prototype.setUserType = function () {
@@ -74,6 +75,8 @@ var MenuBarComponent = (function () {
             _this.logged = _this._AuthService.userDestroy();
             _this.reloadMenu();
         }, function (error) {
+            _this.logged = _this._AuthService.userDestroy();
+            _this.reloadMenu();
             console.log(error);
         });
     };

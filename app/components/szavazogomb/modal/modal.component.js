@@ -11,9 +11,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var ng2_bs3_modal_1 = require('ng2-bs3-modal/ng2-bs3-modal');
 var auth_service_1 = require('../../../globals/services/auth.service');
+var router_1 = require('@angular/router');
 var ModalComponent = (function () {
-    function ModalComponent(_AuthService) {
+    function ModalComponent(_AuthService, _Router) {
         this._AuthService = _AuthService;
+        this._Router = _Router;
         this.valueConfirmed = new core_1.EventEmitter(); //the question has confirmed
         this.openedPopUp = new core_1.EventEmitter(); //get a modalcomponent be to caller component
         this.callingButton = 'kicsi'; //button html code
@@ -35,6 +37,9 @@ var ModalComponent = (function () {
     ModalComponent.prototype.confirm = function () {
         this.valueConfirmed.emit('true');
     };
+    ModalComponent.prototype.goRegister = function () {
+        this._Router.navigate(['/regisztracio']);
+    };
     ModalComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
@@ -45,7 +50,7 @@ var ModalComponent = (function () {
             outputs: ['valueConfirmed', 'openedPopUp'],
             directives: [ng2_bs3_modal_1.MODAL_DIRECTIVES],
         }), 
-        __metadata('design:paramtypes', [auth_service_1.AuthService])
+        __metadata('design:paramtypes', [auth_service_1.AuthService, router_1.Router])
     ], ModalComponent);
     return ModalComponent;
 }());

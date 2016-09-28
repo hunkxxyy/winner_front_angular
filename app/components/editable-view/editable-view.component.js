@@ -22,6 +22,7 @@ var EditableViewComponent = (function () {
         this.toolbarshow = false;
         this.editorshow = false;
         this.content = '';
+        this.title = '';
         this.currentContent = '**';
         this.subscription = this._ActivatedRoute.params.subscribe(function (param) { return _this.currentContent = param['id']; });
     }

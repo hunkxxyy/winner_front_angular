@@ -23,7 +23,7 @@ var ForgotPasswordComponent = (function () {
     }
     ForgotPasswordComponent.prototype.sendReminderMail = function (email) {
         this._APIService.getResponseGET('api/user/passwordreminder/' + email, '').subscribe(function (data) {
-            alert('Az email ki lett k�ldve!');
+            alert('Az email ki lett küldve!');
         }, function (error) {
             console.log(error);
         });
